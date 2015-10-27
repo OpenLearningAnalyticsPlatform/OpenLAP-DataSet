@@ -1,11 +1,21 @@
-/* This is a sample to illustrate how a configuration between the ouput of an indicator query and input of a
-*
+/*
+* Sample of a configuration json
 */
 {
   "configuration" : {
+    "metaData":{
+      "outputComponent": {"id":"indicator1", "type": "indicator"},
+      "inputComponent": {"id":"analyticsMethod1", "type": "analyticsMethod"}
+    },
     "tuples" :[
-      {"output":{},"input":{}},
-      {"output":{},"input":{}}
+      {
+        "output":{"columnId":"student_first_names", "type": "string"},
+        "input":{"columnId":"x_axis", "type": "string"}
+      },
+      {
+        "output":{"columnId":"student_last_names", "type": "string"},
+        "input":{"columnId":"student_last_names", "type": "string"}
+      }
     ]
   }
 }

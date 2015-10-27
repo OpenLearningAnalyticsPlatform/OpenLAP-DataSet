@@ -1,0 +1,25 @@
+/*
+* Sample of a DataSet
+*/
+{
+  "dataset":[
+    {
+      "columnId": "student_first_names",
+      "type":"string",
+      "data":[
+        "Oscar",
+        "Bassim",
+        "Tanmaya"
+      ]
+    },
+    {
+      "columnId":"student_last_names",
+      "type":"string",
+      "data":[
+        "Barrios",
+        "Bashir",
+        "Mahatrapa"
+      ]
+    }
+  ]
+}
