@@ -1,0 +1,11 @@
+/* This is a sample to illustrate how a configuration between the ouput of an indicator query and input of a
+*
+*/
+{
+  "configuration" : {
+    "tuples" :[
+      {"output":{},"input":{}},
+      {"output":{},"input":{}}
+    ]
+  }
+}
