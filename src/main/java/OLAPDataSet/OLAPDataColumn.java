@@ -7,17 +7,23 @@ public class OLAPDataColumn <T> {
     private final OLAPColumnDataType type;
     private String id;
     private T [] data;
+    private boolean required;
 
-    public OLAPDataColumn(String id, OLAPColumnDataType type) {
+    public OLAPDataColumn(String id, OLAPColumnDataType type, boolean isRequired) {
         this.id = id;
         this.type = type;
+        this.required = isRequired;
     }
 
-    boolean validate(OLAPDataColumn<?> inPortColumn){
-        // TODO
-        return false;
+    public OLAPDataColumn(OLAPColumnDataType type, String id) {
+        this.type = type;
+        this.id = id;
+        this.required=false;
     }
 
+    public boolean validate(OLAPDataColumn<?> inPortColumn){
+        return inPortColumn.getType().equals(this.type) && !(inPortColumn.getId().isEmpty()) && inPortColumn.getId() != null;
+    }
 
     public void setData(T[] data) {
         this.data = data;
@@ -33,5 +39,9 @@ public class OLAPDataColumn <T> {
 
     public String getId() {
         return id;
+    }
+
+    public boolean isRequired() {
+        return required;
     }
 }
