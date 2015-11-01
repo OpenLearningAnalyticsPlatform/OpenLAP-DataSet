@@ -38,7 +38,7 @@ public class DataSetConfigurationValidationResult {
       if(this.validationMessage.isEmpty() || this.validationMessage == null)
           this.validationMessage = message;
       else
-          this.validationMessage = System.lineSeparator() + message;
+          this.validationMessage = this.validationMessage + System.lineSeparator() + message;
       return this.validationMessage;
     }
 }

@@ -49,12 +49,12 @@ public class ConfigurationValidationTests {
     public void OLAPDataColumnValidationTest()
     {
         // Valid configuration
-        Assert.assertTrue(stringColumn1.validate(stringColumn1));
+        Assert.assertTrue(stringColumn1.validateConfigurationData(stringColumn1.getConfigurationData()));
         // Nameless columns
-        Assert.assertFalse(stringColumn1.validate(noNameColumn));
-        Assert.assertFalse(stringColumn1.validate(nullColumn));
+        Assert.assertFalse(stringColumn1.validateConfigurationData(noNameColumn.getConfigurationData()));
+        Assert.assertFalse(stringColumn1.validateConfigurationData(nullColumn.getConfigurationData()));
         // Not valid (different types)
-        Assert.assertFalse(stringColumn1.validate(intColumn1));
+        Assert.assertFalse(stringColumn1.validateConfigurationData(intColumn1.getConfigurationData()));
     }
 
     @Test
@@ -62,23 +62,51 @@ public class ConfigurationValidationTests {
     {
         try {
             dataSet1.addOLAPDataColumn(
-                    OLAPDataColumnFactory.createOLAPDataColumnOfType("intColumn1",OLAPColumnDataType.INTEGER,false));
+                    OLAPDataColumnFactory.createOLAPDataColumnOfType("intColumn1",OLAPColumnDataType.INTEGER,true));
             dataSet1.addOLAPDataColumn(
-                    OLAPDataColumnFactory.createOLAPDataColumnOfType("stringColumn1",OLAPColumnDataType.STRING,false));
+                    OLAPDataColumnFactory.createOLAPDataColumnOfType("stringColumn1",OLAPColumnDataType.STRING,true));
+            dataSet1.addOLAPDataColumn(
+                    OLAPDataColumnFactory.createOLAPDataColumnOfType("bananito",OLAPColumnDataType.STRING,true));
 
-            HashMap<OLAPDataColumn,OLAPDataColumn> configurationMap1 = new HashMap<OLAPDataColumn, OLAPDataColumn>();
-            configurationMap1.put(intColumn1,
-                    OLAPDataColumnFactory.createOLAPDataColumnOfType("intColumn1",OLAPColumnDataType.INTEGER,false));
-            configurationMap1.put(stringColumn1,
-                    OLAPDataColumnFactory.createOLAPDataColumnOfType("stringColumn1",OLAPColumnDataType.STRING,false));
-            configuration1 = new OLAPPortConfiguration(configurationMap1);
+            configuration1 = new OLAPPortConfiguration();
+            configuration1.getMapping().add
+                    (
+                            new OLAPPortMapping
+                                    (
+                                            intColumn1.getConfigurationData(),
+                                            OLAPDataColumnFactory.createOLAPDataColumnOfType
+                                                    ("intColumn1", OLAPColumnDataType.INTEGER, false).
+                                                    getConfigurationData()
+                                    )
+                    );
+            configuration1.getMapping().add
+                    (
+                            new OLAPPortMapping
+                                    (
+                                            stringColumn1.getConfigurationData(),
+                                            OLAPDataColumnFactory.createOLAPDataColumnOfType
+                                                    ("stringColumn1", OLAPColumnDataType.STRING, false).
+                                                    getConfigurationData()
+                                    )
+                    );
+            configuration1.getMapping().add
+                    (
+                            new OLAPPortMapping
+                                    (
+                                            stringColumn1.getConfigurationData(),
+                                            OLAPDataColumnFactory.createOLAPDataColumnOfType
+                                                    ("bananito",OLAPColumnDataType.STRING,false).
+                                                    getConfigurationData()
+                                    )
+                    );
+
         } catch (OLAPDataColumnException e) {
             e.printStackTrace();
         }
         // Valid configuration
         // Assert both status and message
         System.out.println(dataSet1.validateConfiguration(configuration1).getValidationMessage());
-        Assert.assertTrue(dataSet1.validateConfiguration(configuration1).isValid());
+        Assert.assertTrue("Expected true", dataSet1.validateConfiguration(configuration1).isValid());
 
         // Invalid configuration
         // Assert both status and message

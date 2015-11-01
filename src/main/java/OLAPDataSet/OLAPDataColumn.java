@@ -4,44 +4,32 @@ package OLAPDataSet;
  * Created by lechip on 27/10/15.
  */
 public class OLAPDataColumn <T> {
-    private final OLAPColumnDataType type;
-    private String id;
+
+    private final OLAPColumnConfigurationData configurationData;
     private T [] data;
-    private boolean required;
 
     public OLAPDataColumn(String id, OLAPColumnDataType type, boolean isRequired) {
-        this.id = id;
-        this.type = type;
-        this.required = isRequired;
+        this.configurationData = new OLAPColumnConfigurationData(id, type, isRequired);
     }
 
     public OLAPDataColumn(OLAPColumnDataType type, String id) {
-        this.type = type;
-        this.id = id;
-        this.required=false;
+        this.configurationData = new OLAPColumnConfigurationData(id, type, false);
     }
 
-    public boolean validate(OLAPDataColumn<?> inPortColumn){
-        return inPortColumn.getType().equals(this.type) && !(inPortColumn.getId().isEmpty()) && inPortColumn.getId() != null;
+    public boolean validateConfigurationData(OLAPColumnConfigurationData olapColumnConfigurationData){
+        return this.getConfigurationData().validateConfigurationDataCorrespondence(olapColumnConfigurationData);
     }
 
     public void setData(T[] data) {
         this.data = data;
     }
 
-    public OLAPColumnDataType getType() {
-        return type;
-    }
-
     public T[] getData() {
         return data;
     }
 
-    public String getId() {
-        return id;
+    public OLAPColumnConfigurationData getConfigurationData() {
+        return configurationData;
     }
 
-    public boolean isRequired() {
-        return required;
-    }
 }
