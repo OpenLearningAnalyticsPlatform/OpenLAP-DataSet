@@ -4,7 +4,6 @@ import exceptions.OLAPDataColumnException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -39,9 +38,11 @@ public class OLAPDataSet {
 
         // Check for required fields
         validatePresenceRequiredColumns(configResult, values);
+        if(!configResult.isValid) return configResult;
 
         // Check for incoming fields being present
-        validateInputColumnsCorrespondance(configResult, values);
+        validateInputColumnsCorrespondence(configResult, values);
+        if(!configResult.isValid) return configResult;
 
         for(OLAPPortMapping mappingEntry: configuration.getMapping())
         {
@@ -54,10 +55,7 @@ public class OLAPDataSet {
             }
         }
 
-        if(!configResult.isValid)
-        {
-            return configResult;
-        }
+        if(!configResult.isValid) return configResult;
         else
         {
             configResult.setValidationMessage(DataSetConfigurationValidationResult.VALID_CONFIGURATION);
@@ -146,25 +144,11 @@ public class OLAPDataSet {
     }
 
     /**
-     * Remove the columns of the first parameter that exists on the second parameter
-     * @param original
-     * @param removalList
-     */
-    private void removeMatchingColumnData(List<OLAPColumnConfigurationData> original,
-                                          List<OLAPColumnConfigurationData> removalList) {
-        //for each element of the removal list check if is valid on the original
-        for (OLAPColumnConfigurationData removalListConfig: removalList)
-        {
-           original.removeIf(e -> (e.validateConfigurationDataCorrespondence(removalListConfig)));
-        }
-    }
-
-    /**
      * Check that all the input columns are present on the actual DataSet
      * @param configResult The config result object that can be modified to contain error messages
      * @param values The list of columns to be checked if is all contained in the DataSet.
      */
-    private void validateInputColumnsCorrespondance(DataSetConfigurationValidationResult configResult,
+    private void validateInputColumnsCorrespondence(DataSetConfigurationValidationResult configResult,
                                                     List<OLAPColumnConfigurationData> values) {
         // Get the columns present on the dataset
         List<OLAPColumnConfigurationData> dataSetColumns = getColumnsConfigurationData();
@@ -188,6 +172,18 @@ public class OLAPDataSet {
         else configResult.setIsValid(true);
     }
 
-
+    /**
+     * Remove the columns of the first parameter that exists on the second parameter
+     * @param original
+     * @param removalList
+     */
+    private void removeMatchingColumnData(List<OLAPColumnConfigurationData> original,
+                                          List<OLAPColumnConfigurationData> removalList) {
+        //for each element of the removal list check if is valid on the original
+        for (OLAPColumnConfigurationData removalListConfig: removalList)
+        {
+            original.removeIf(e -> (e.validateConfigurationDataCorrespondence(removalListConfig)));
+        }
+    }
 
 }
