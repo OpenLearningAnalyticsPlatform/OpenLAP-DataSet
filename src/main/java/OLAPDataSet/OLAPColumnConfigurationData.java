@@ -9,6 +9,13 @@ public class OLAPColumnConfigurationData {
     private String id;
     private boolean required;
 
+    /**
+     * Constructor for serialization pruproses
+     */
+    public OLAPColumnConfigurationData() {
+        this.type = null;
+    }
+
     public OLAPColumnConfigurationData(String id, OLAPColumnDataType type, boolean required) {
         this.setRequired(required);
         this.type = type;

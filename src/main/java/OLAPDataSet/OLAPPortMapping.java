@@ -11,6 +11,14 @@ public class OLAPPortMapping {
     private final OLAPColumnConfigurationData outputPort;
     private final OLAPColumnConfigurationData inputPort;
 
+    /**
+     * Constructor for serialization pruproses
+     */
+    public OLAPPortMapping(){
+        this.outputPort = null;
+        this.inputPort = null;
+    }
+
     public OLAPPortMapping(OLAPColumnConfigurationData outputPort, OLAPColumnConfigurationData inputPort) {
         this.outputPort = outputPort;
         this.inputPort = inputPort;

@@ -1,0 +1,39 @@
+/*
+* Sample of a configuration json
+*/
+{
+  "mapping" : [ {
+    "outputPort" : {
+      "type" : "INTEGER",
+      "id" : "intColumn1",
+      "required" : false
+    },
+    "inputPort" : {
+      "type" : "INTEGER",
+      "id" : "intColumn1",
+      "required" : false
+    }
+  }, {
+    "outputPort" : {
+      "type" : "STRING",
+      "id" : "stringColumn1",
+      "required" : false
+    },
+    "inputPort" : {
+      "type" : "STRING",
+      "id" : "stringColumn1",
+      "required" : false
+    }
+  }, {
+    "outputPort" : {
+      "type" : "STRING",
+      "id" : "stringColumn1",
+      "required" : false
+    },
+    "inputPort" : {
+      "type" : "STRING",
+      "id" : "bananito",
+      "required" : false
+    }
+  } ]
+}

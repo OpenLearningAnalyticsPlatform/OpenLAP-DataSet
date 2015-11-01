@@ -1,5 +1,6 @@
 package OLAPDataSet;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import exceptions.OLAPDataColumnException;
 
 import java.util.ArrayList;
@@ -10,12 +11,15 @@ import java.util.List;
  * Created by lechip on 27/10/15.
  */
 public class OLAPDataSet {
-
     // Map of the columns with the String ID. The string is taken from the OLAPColumnConfigurationData of the column.
     private HashMap<String, OLAPDataColumn> columns;
 
     public OLAPDataSet() {
         this.columns = new HashMap<String, OLAPDataColumn>();
+    }
+
+    public HashMap<String, OLAPDataColumn> getColumns() {
+        return columns;
     }
 
     public void addOLAPDataColumn(OLAPDataColumn<?> column) throws OLAPDataColumnException {
@@ -69,7 +73,7 @@ public class OLAPDataSet {
      * @param onlyRequiredColumns if true, returns only required columns
      * @return A list of the OLAPDataColumns that are required
      */
-    public List<OLAPDataColumn> getColumns(boolean onlyRequiredColumns)
+    public List<OLAPDataColumn> getColumnsAsList(boolean onlyRequiredColumns)
     {
         List<OLAPDataColumn> columns = new ArrayList<OLAPDataColumn>(this.columns.values());
         if (!onlyRequiredColumns) return columns;
@@ -93,8 +97,8 @@ public class OLAPDataSet {
     {
         List<OLAPDataColumn> columns;
         if (onlyRequiredColumnsConfigurationData)
-            columns = getColumns(true);
-        else columns = getColumns(false);
+            columns = getColumnsAsList(true);
+        else columns = getColumnsAsList(false);
 
         List<OLAPColumnConfigurationData> result = new ArrayList<OLAPColumnConfigurationData>();
 
@@ -109,6 +113,7 @@ public class OLAPDataSet {
      * Get a list of the OLAPColumnConfigurationData of all the columns of the Dataset
      * @return Get a list of the OLAPColumnConfigurationData of all the columns of the Dataset
      */
+    @JsonIgnore
     public List<OLAPColumnConfigurationData> getColumnsConfigurationData()
     {
         return this.getColumnsConfigurationData(false);

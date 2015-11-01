@@ -1,0 +1,31 @@
+/*
+* Sample of a DataSet
+*/
+{
+  "columns" : {
+    "bananito" : {
+      "configurationData" : {
+        "type" : "STRING",
+        "id" : "bananito",
+        "required" : false
+      },
+      "data" : [ ]
+    },
+    "intColumn1" : {
+      "configurationData" : {
+        "type" : "INTEGER",
+        "id" : "intColumn1",
+        "required" : true
+      },
+      "data" : [ 1 ]
+    },
+    "stringColumn1" : {
+      "configurationData" : {
+        "type" : "STRING",
+        "id" : "stringColumn1",
+        "required" : true
+      },
+      "data" : [ "value1" ]
+    }
+  }
+}

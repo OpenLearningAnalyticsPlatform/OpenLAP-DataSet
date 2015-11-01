@@ -1,5 +1,7 @@
 package OLAPDataSet;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,23 +14,26 @@ import java.util.List;
  */
 public class OLAPPortConfiguration {
     private ArrayList<OLAPPortMapping> mapping;
-    public OLAPPortConfiguration(ArrayList<OLAPPortMapping> mapping) {
-        this.mapping = mapping;
-    }
 
     public OLAPPortConfiguration() {
         this.mapping = new ArrayList<OLAPPortMapping>();
+    }
+
+    public OLAPPortConfiguration(ArrayList<OLAPPortMapping> mapping) {
+        this.mapping = mapping;
     }
 
     public ArrayList<OLAPPortMapping> getMapping() {
         return mapping;
     }
 
+    @JsonIgnore
     public ArrayList<OLAPColumnConfigurationData> getOutputColumnConfigurationData()
     {
         return getConfigData(OLAPConfigDataSides.OUTPUTDATA);
     }
 
+    @JsonIgnore
     public ArrayList<OLAPColumnConfigurationData> getInputColumnConfigurationData()
     {
         return getConfigData(OLAPConfigDataSides.INPUTDATA);
