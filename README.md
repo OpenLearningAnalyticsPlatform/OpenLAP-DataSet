@@ -1,9 +1,11 @@
 # OLAPDataSet
-A modular Serializable DataSet to transport data between macro components in the OLAP project
+A modular Serializable DataSet to transport data between macro components in the OLAP project.
+The OLAPDataSet is described in more detail and in te context of the Open Learning Analytics Platform in the
+[OLAP Architecture](https://github.com/OpenLearningAnalyticsPlatform/OLAPArchitecture/wiki/4.5.1.-OLAP-Analytics-Methods:-Module-Views#package-olapdataset).
 
 #IMPORTING INTO A PROJECT
 
-**Setp 1.** Add the JitPack repository to your build file:
+**Step 1.** Add the JitPack repository to your build file:
 
 Maven:
 ```xml
@@ -22,7 +24,7 @@ repositories {
 }
 ```
 
-**Setp 2.**  Add the dependency
+**Step 2.**  Add the dependency
 
 Maven:
 ```xml
