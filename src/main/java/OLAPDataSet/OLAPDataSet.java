@@ -191,4 +191,19 @@ public class OLAPDataSet {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OLAPDataSet)) return false;
+
+        OLAPDataSet that = (OLAPDataSet) o;
+
+        return !(getColumns() != null ? !getColumns().equals(that.getColumns()) : that.getColumns() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getColumns() != null ? getColumns().hashCode() : 0;
+    }
 }

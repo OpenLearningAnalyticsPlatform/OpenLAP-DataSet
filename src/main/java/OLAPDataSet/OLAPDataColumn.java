@@ -39,4 +39,23 @@ public class OLAPDataColumn <T> {
         return configurationData;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OLAPDataColumn)) return false;
+
+        OLAPDataColumn<?> that = (OLAPDataColumn<?>) o;
+
+        if (getConfigurationData() != null ? !getConfigurationData().equals(that.getConfigurationData()) : that.getConfigurationData() != null)
+            return false;
+        return !(getData() != null ? !getData().equals(that.getData()) : that.getData() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getConfigurationData() != null ? getConfigurationData().hashCode() : 0;
+        result = 31 * result + (getData() != null ? getData().hashCode() : 0);
+        return result;
+    }
 }
