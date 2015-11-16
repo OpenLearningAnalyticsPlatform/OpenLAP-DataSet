@@ -52,4 +52,34 @@ public class OLAPColumnConfigurationData {
         return outputPortConfigData.getType().equals(this.getType())
                 && (outputPortConfigData.getId() != null && !outputPortConfigData.getId().isEmpty());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OLAPColumnConfigurationData)) return false;
+
+        OLAPColumnConfigurationData that = (OLAPColumnConfigurationData) o;
+
+        if (isRequired() != that.isRequired()) return false;
+        if (getType() != that.getType()) return false;
+        return getId().equals(that.getId());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getType().hashCode();
+        result = 31 * result + getId().hashCode();
+        result = 31 * result + (isRequired() ? 1 : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "OLAPColumnConfigurationData{" +
+                "type=" + type +
+                ", id='" + id + '\'' +
+                ", required=" + required +
+                '}';
+    }
 }
