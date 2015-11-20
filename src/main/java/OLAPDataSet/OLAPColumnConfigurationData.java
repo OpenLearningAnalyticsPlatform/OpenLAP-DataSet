@@ -60,7 +60,7 @@ public class OLAPColumnConfigurationData {
 
         OLAPColumnConfigurationData that = (OLAPColumnConfigurationData) o;
 
-        if (isRequired() != that.isRequired()) return false;
+        if (isRequired() && isRequired() != that.isRequired()) return false;
         if (getType() != that.getType()) return false;
         return getId().equals(that.getId());
 
