@@ -1,5 +1,8 @@
 package OLAPDataSet;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * This class represents a tuple or 'mapping' entry between two ports.
  * It has a outputPort which represents an entry of the configuration of the macro component GIVING data and an
@@ -43,4 +46,16 @@ public class OLAPPortMapping {
                 this.inputPort.equals(mapping.getInputPort());
     }
 
+    @Override
+    public String toString() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return "OLAPPortMapping{" +
+                    "outputPort=" + outputPort +
+                    ", inputPort=" + inputPort +
+                    '}';
+        }
+    }
 }
