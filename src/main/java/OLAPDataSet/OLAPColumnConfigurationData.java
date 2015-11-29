@@ -1,5 +1,8 @@
 package OLAPDataSet;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * This class contains the configuration data of a OLAPDataColumn, it is encapsulated for easy comparison of
  * configurations and for serialization separated from the data
@@ -74,12 +77,21 @@ public class OLAPColumnConfigurationData {
         return result;
     }
 
+    /**
+     * ToString method attempts to use the json representation of the object.
+     * @return JSCON representation of the object
+     */
     @Override
     public String toString() {
-        return "OLAPColumnConfigurationData{" +
-                "type=" + type +
-                ", id='" + id + '\'' +
-                ", required=" + required +
-                '}';
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return "OLAPColumnConfigurationData{" +
+                    "type=" + type +
+                    ", id='" + id + '\'' +
+                    ", required=" + required +
+                    '}';
+        }
     }
 }

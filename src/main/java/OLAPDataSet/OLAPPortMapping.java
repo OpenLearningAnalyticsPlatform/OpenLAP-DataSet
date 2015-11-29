@@ -46,6 +46,10 @@ public class OLAPPortMapping {
                 this.inputPort.equals(mapping.getInputPort());
     }
 
+    /**
+     * ToString method attempts to use the json representation of the object.
+     * @return JSCON representation of the object
+     */
     @Override
     public String toString() {
         ObjectMapper mapper = new ObjectMapper();

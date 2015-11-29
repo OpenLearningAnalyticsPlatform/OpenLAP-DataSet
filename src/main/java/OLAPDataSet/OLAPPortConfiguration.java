@@ -1,6 +1,8 @@
 package OLAPDataSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +60,22 @@ public class OLAPPortConfiguration {
         }
 
         return result;
+    }
+
+    /**
+     * ToString method attempts to use the json representation of the object.
+     * @return JSCON representation of the object
+     */
+    @Override
+    public String toString() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            return "OLAPPortConfiguration{" +
+                    "mapping=" + mapping +
+                    '}';
+        }
     }
 
     private enum OLAPConfigDataSides
