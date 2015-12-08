@@ -1,12 +1,10 @@
-package OLAPDataSet;
+package DataSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Mapping between OLAPColumnConfigurationData. It uses an array of OLAPPortMappings that represents all the Output

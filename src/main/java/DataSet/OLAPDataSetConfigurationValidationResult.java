@@ -1,19 +1,19 @@
-package OLAPDataSet;
+package DataSet;
 
 /**
  * This object encapsulates the validaiton operation of a configuration of a DataSet
  */
-public class DataSetConfigurationValidationResult {
+public class OLAPDataSetConfigurationValidationResult {
     public static final String VALID_CONFIGURATION = "Valid configuration";
     boolean isValid;
     String validationMessage;
 
-    public DataSetConfigurationValidationResult() {
+    public OLAPDataSetConfigurationValidationResult() {
         this.isValid = false;
         this.validationMessage = "";
     }
 
-    public DataSetConfigurationValidationResult(boolean isValid, String validationMessage) {
+    public OLAPDataSetConfigurationValidationResult(boolean isValid, String validationMessage) {
         this.isValid = isValid;
         this.validationMessage = validationMessage;
     }

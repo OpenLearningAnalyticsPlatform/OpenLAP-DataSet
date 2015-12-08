@@ -1,4 +1,4 @@
-package OLAPDataSet;
+package DataSet;
 
 import java.util.ArrayList;
 

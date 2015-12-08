@@ -1,4 +1,4 @@
-package OLAPDataSet;
+package DataSet;
 
 import exceptions.OLAPDataColumnException;
 

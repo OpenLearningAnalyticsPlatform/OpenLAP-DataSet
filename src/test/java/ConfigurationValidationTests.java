@@ -1,9 +1,5 @@
-import OLAPDataSet.*;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParseException;
+import DataSet.*;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import exceptions.OLAPDataColumnException;
@@ -11,9 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by lechip on 29/10/15.
@@ -207,17 +201,17 @@ public class ConfigurationValidationTests {
 
         // Valid configuration
         // Assert both status and message
-        DataSetConfigurationValidationResult configurationValidationResult1 =
+        OLAPDataSetConfigurationValidationResult configurationValidationResult1 =
                 dataSet1.validateConfiguration(configuration1);
         System.out.println("Configuration1: " + configurationValidationResult1.getValidationMessage());
 
         Assert.assertTrue("Expected true", dataSet1.validateConfiguration(configuration1).isValid());
-        Assert.assertEquals(DataSetConfigurationValidationResult.VALID_CONFIGURATION,
+        Assert.assertEquals(OLAPDataSetConfigurationValidationResult.VALID_CONFIGURATION,
                 configurationValidationResult1.getValidationMessage());
 
         // Invalid configuration
         // Assert both status and message
-        DataSetConfigurationValidationResult configurationValidationResult2 =
+        OLAPDataSetConfigurationValidationResult configurationValidationResult2 =
                 dataSet1.validateConfiguration(configuration2);
 
         System.out.println("Configuration2: " + configurationValidationResult2.getValidationMessage());
@@ -227,7 +221,7 @@ public class ConfigurationValidationTests {
 
         // Insufficient arguments, not covering required fields
         // Assert both status and message
-        DataSetConfigurationValidationResult configurationValidationResult3 =
+        OLAPDataSetConfigurationValidationResult configurationValidationResult3 =
                 dataSet1.validateConfiguration(configuration3);
         System.out.println("Configuration3: " + configurationValidationResult3.getValidationMessage());
         Assert.assertFalse("Expected false", dataSet1.validateConfiguration(configuration3).isValid());
@@ -237,7 +231,7 @@ public class ConfigurationValidationTests {
 
         // Input has fields not existent in the DataSet
         // Assert both status and message
-        DataSetConfigurationValidationResult configurationValidationResult4 =
+        OLAPDataSetConfigurationValidationResult configurationValidationResult4 =
                 dataSet1.validateConfiguration(configuration4);
         System.out.println("Configuration4: " + configurationValidationResult4.getValidationMessage());
         Assert.assertFalse("Expected false", dataSet1.validateConfiguration(configuration4).isValid());

@@ -1,4 +1,4 @@
-package OLAPDataSet;
+package DataSet;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import exceptions.OLAPDataColumnException;
@@ -32,10 +32,10 @@ public class OLAPDataSet {
         }
     }
 
-    public DataSetConfigurationValidationResult validateConfiguration(OLAPPortConfiguration configuration)
+    public OLAPDataSetConfigurationValidationResult validateConfiguration(OLAPPortConfiguration configuration)
     {
         // Initialize object with results
-        DataSetConfigurationValidationResult configResult = new DataSetConfigurationValidationResult();
+        OLAPDataSetConfigurationValidationResult configResult = new OLAPDataSetConfigurationValidationResult();
         // Get the input as a list
         List<OLAPColumnConfigurationData> values =
                 new ArrayList<OLAPColumnConfigurationData>(configuration.getInputColumnConfigurationData());
@@ -62,7 +62,7 @@ public class OLAPDataSet {
         if(!configResult.isValid) return configResult;
         else
         {
-            configResult.setValidationMessage(DataSetConfigurationValidationResult.VALID_CONFIGURATION);
+            configResult.setValidationMessage(OLAPDataSetConfigurationValidationResult.VALID_CONFIGURATION);
             return configResult;
         }
     }
@@ -126,7 +126,7 @@ public class OLAPDataSet {
      * @param configResult The config result object that can be modified to contain error messages
      * @param values The list to be checked if contains all the required values.
      */
-    private void validatePresenceRequiredColumns(DataSetConfigurationValidationResult configResult,
+    private void validatePresenceRequiredColumns(OLAPDataSetConfigurationValidationResult configResult,
                                                  List<OLAPColumnConfigurationData> values) {
         // Initialize a list of the required columns
         List<OLAPColumnConfigurationData> requiredColumnConfigData = getColumnsConfigurationData(true);
@@ -153,7 +153,7 @@ public class OLAPDataSet {
      * @param configResult The config result object that can be modified to contain error messages
      * @param values The list of columns to be checked if is all contained in the DataSet.
      */
-    private void validateInputColumnsCorrespondence(DataSetConfigurationValidationResult configResult,
+    private void validateInputColumnsCorrespondence(OLAPDataSetConfigurationValidationResult configResult,
                                                     List<OLAPColumnConfigurationData> values) {
         // Get the columns present on the dataset
         List<OLAPColumnConfigurationData> dataSetColumns = getColumnsConfigurationData();

@@ -1,4 +1,4 @@
-package OLAPDataSet;
+package DataSet;
 
 /**
  * Created by lechip on 27/10/15.
