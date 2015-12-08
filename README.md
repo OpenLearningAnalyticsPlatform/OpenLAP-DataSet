@@ -1,7 +1,7 @@
-# OLAPDataSet
+# OpenLAP-DataSet
 A modular Serializable DataSet to transport data between macro components in the OLAP project.
 The OLAPDataSet is described in more detail and in te context of the Open Learning Analytics Platform in the
-[OLAP Architecture](https://github.com/OpenLearningAnalyticsPlatform/OLAPArchitecture/wiki/4.5.1.-OLAP-Analytics-Methods:-Module-Views#package-olapdataset).
+[OpenLAP Architecture](https://github.com/OpenLearningAnalyticsPlatform/OLAPArchitecture/wiki/4.5.1.-OLAP-Analytics-Methods:-Module-Views#package-olapdataset).
 
 #IMPORTING INTO A PROJECT
 
@@ -31,12 +31,12 @@ Maven:
 <dependency>
     <groupId>com.github.OpenLearningAnalyticsPlatform</groupId>
     <artifactId>OLAPDataSet</artifactId>
-    <version>v1.0</version>
+    <version>-SNAPSHOT</version>
 </dependency>
 ```
 Gradle:
 ```gradle
 dependencies {
-        compile 'com.github.OpenLearningAnalyticsPlatform:OLAPDataSet:v1.0'
+        compile 'com.github.OpenLearningAnalyticsPlatform:OLAPDataSet:-SNAPSHOT'
 }
 ```
