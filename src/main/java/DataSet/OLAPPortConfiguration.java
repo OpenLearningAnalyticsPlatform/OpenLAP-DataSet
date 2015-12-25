@@ -15,24 +15,42 @@ import java.util.ArrayList;
 public class OLAPPortConfiguration {
     private ArrayList<OLAPPortMapping> mapping;
 
+    /**
+     * Empty constructor
+     */
     public OLAPPortConfiguration() {
         this.mapping = new ArrayList<OLAPPortMapping>();
     }
 
+    /**
+     * Standard constructor
+     * @param mapping An Array of OLAPPortMappings
+     */
     public OLAPPortConfiguration(ArrayList<OLAPPortMapping> mapping) {
         this.mapping = mapping;
     }
 
+    /**
+     * @return The Array of OLAPPortMappings
+     */
     public ArrayList<OLAPPortMapping> getMapping() {
         return mapping;
     }
 
+    /**
+     * This method returns all the OLAPColumnConfigurationData that are outputs on the mapping.
+     * @return An Array of OLAPColumnConfigurationData that corresponds to all the outputs of the OLAPPortConfiguration
+     */
     @JsonIgnore
     public ArrayList<OLAPColumnConfigurationData> getOutputColumnConfigurationData()
     {
         return getConfigData(OLAPConfigDataSides.OUTPUTDATA);
     }
 
+    /**
+     * This method returns all the OLAPColumnConfigurationData that are inputs on the mapping.
+     * @return An Array of OLAPColumnConfigurationData that corresponds to all the inputs of the OLAPPortConfiguration
+     */
     @JsonIgnore
     public ArrayList<OLAPColumnConfigurationData> getInputColumnConfigurationData()
     {
@@ -76,6 +94,9 @@ public class OLAPPortConfiguration {
         }
     }
 
+    /**
+     * Possible directions of data of the configuration.
+     */
     private enum OLAPConfigDataSides
     {
         OUTPUTDATA,

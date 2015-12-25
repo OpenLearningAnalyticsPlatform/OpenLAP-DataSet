@@ -1,7 +1,8 @@
 package DataSet;
 
 /**
- * Created by lechip on 27/10/15.
+ * Types that can be used on OLAPColumnConfigurationData.
+ * Ideally, they should correspond to DataBase primitive types
  */
 public enum OLAPColumnDataType {
     BYTE,

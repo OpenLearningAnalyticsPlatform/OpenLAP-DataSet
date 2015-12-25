@@ -22,15 +22,26 @@ public class OLAPPortMapping {
         this.inputPort = null;
     }
 
+    /**
+     * Standard constructor with in- and out- port.
+     * @param outputPort The OLAPColumnConfigurationData considered the output of the tuple (origin)
+     * @param inputPort The OLAPColumnConfigurationData considered the input of the tuple (destination)
+     */
     public OLAPPortMapping(OLAPColumnConfigurationData outputPort, OLAPColumnConfigurationData inputPort) {
         this.outputPort = outputPort;
         this.inputPort = inputPort;
     }
 
+    /**
+     * @return The output port of the tuple (origin)
+     */
     public OLAPColumnConfigurationData getOutputPort() {
         return outputPort;
     }
 
+    /**
+     * @return The input port of the tuple (destination)
+     */
     public OLAPColumnConfigurationData getInputPort() {
         return inputPort;
     }

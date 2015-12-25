@@ -3,38 +3,67 @@ package DataSet;
 import java.util.ArrayList;
 
 /**
- * Created by lechip on 27/10/15.
+ * This class is a grouping of a OLAPColumnConfigurationData and the data that the OLAPColumnConfigurationData
+ * describes. In conjunction, it is denominated a OLAPDataColumn.
  */
 public class OLAPDataColumn <T> {
 
     private final OLAPColumnConfigurationData configurationData;
     private ArrayList<T> data;
 
+    /**
+     * Standard constructor, sets fields to null.
+     */
     public OLAPDataColumn() {
         this.configurationData = null;
     }
 
+    /**
+     * Constructor that sets the OLAPColumnConfigurationData with the ID, type and required properties
+     * @param id ID of the OLAPDataColumn
+     * @param type OLAPColumnDataType of the data of the OLAPDataColumn
+     * @param isRequired Specifies if the OLAPDataColumn is required or not
+     */
     public OLAPDataColumn(String id, OLAPColumnDataType type, boolean isRequired) {
         this.configurationData = new OLAPColumnConfigurationData(id, type, isRequired);
         this.data = new ArrayList<T>();
     }
 
+    /**
+     * Default constructor that sets the column as a non required OLAPDataColumn
+     * @param id ID of the OLAPDataColumn
+     * @param type OLAPColumnDataType of the data of the OLAPDataColumn
+     */
     public OLAPDataColumn(OLAPColumnDataType type, String id) {
         this.configurationData = new OLAPColumnConfigurationData(id, type, false);
     }
 
+    /**
+     * Validates the correspondence of type and ID of another OLAPColumnConfigurationData
+     * @param olapColumnConfigurationData OLAPColumnConfigurationData to be compared with
+     * @return true if the compared OLAPColumnConfigurationData Type and ID corresponds to the current
+     */
     public boolean validateConfigurationData(OLAPColumnConfigurationData olapColumnConfigurationData){
         return this.getConfigurationData().validateConfigurationDataCorrespondence(olapColumnConfigurationData);
     }
 
+    /**
+     * @return Get the data of the OLAPDataColumn
+     */
     public ArrayList<T> getData() {
         return data;
     }
 
+    /**
+     * @param data to be set on this OLAPDataColumn
+     */
     public void setData(ArrayList<T> data) {
         this.data = data;
     }
 
+    /**
+     * @return The OLAPColumnConfigurationData object for this OLAPDataColumn
+     */
     public OLAPColumnConfigurationData getConfigurationData() {
         return configurationData;
     }

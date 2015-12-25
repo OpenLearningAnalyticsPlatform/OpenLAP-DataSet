@@ -5,11 +5,21 @@ import exceptions.OLAPDataColumnException;
 import java.time.LocalDateTime;
 
 /**
- * Created by lechip on 27/10/15.
+ * This Factory should be used to create the OLAPDataColumns on OLAPDataSets. IT holds a method that accepts
+ * an ID, a type and the setting for required or not and returns a prepared OLAPDataColumn.
  */
 public class OLAPDataColumnFactory {
 
-    public static final OLAPDataColumn createOLAPDataColumnOfType(String id, OLAPColumnDataType type, boolean isRequired)
+    /**
+     * Returns a OLAPDataColumn with the ID, Type and required parameter.
+     * @param id Desired ID of the OLAPDataColumn to be created
+     * @param type OLAPColumnDataType of the OLAPDataColumn to be created
+     * @param isRequired The setting to make the OLAPDataColumn to be required or not
+     * @return a new OLAPDataColumn initialized with the given ID, Type and requirement parameter and no data
+     * @throws OLAPDataColumnException if the entered type is not recognized.
+     */
+    public static final OLAPDataColumn createOLAPDataColumnOfType(String id, OLAPColumnDataType type,
+                                                                  boolean isRequired)
             throws OLAPDataColumnException {
         switch (type)
         {

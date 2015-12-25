@@ -8,20 +8,38 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by lechip on 27/10/15.
+ * The main component of data transfer and validation on the OpenLAP. This DataStructure allows for two main
+ * purposes:
+ * 1. Enable easy incorporated serialization into JSON with human-readable form
+ * 2. Enable the dynamic validation of types and required fields as well as enable the check of valid configurations,
+ * i.e. mappings between different OLAPDataSets to determine they are compatible on their column Types and required
+ * parameters.
+ * The OLAPDataSets are to be used on the different macro components of the OpenLAP that need to transmit data and
+ * dynamically validate the types before transmitting payloads.
  */
 public class OLAPDataSet {
     // Map of the columns with the String ID. The string is taken from the OLAPColumnConfigurationData of the column.
     private HashMap<String, OLAPDataColumn> columns;
 
+    /**
+     * Empty constructor
+     */
     public OLAPDataSet() {
         this.columns = new HashMap<String, OLAPDataColumn>();
     }
 
+    /**
+     * @return the Columns with their respective IDs
+     */
     public HashMap<String, OLAPDataColumn> getColumns() {
         return columns;
     }
 
+    /**
+     * Adds a column to this OLAPDataSet. Should be added with the help of the OLAPDataColumnFactory
+     * @param column The OLAPDataColumn to be added to the OLAPDataSet
+     * @throws OLAPDataColumnException
+     */
     public void addOLAPDataColumn(OLAPDataColumn<?> column) throws OLAPDataColumnException {
         String columnId = column.getConfigurationData().getId();
         if (columns.containsKey(columnId) || columnId.isEmpty() || columnId == null)
@@ -32,6 +50,15 @@ public class OLAPDataSet {
         }
     }
 
+    /**
+     * This method realizes the need for the OLAPDataSet to be able to dynamically (on runtime) check wheter a
+     * configuration (of the OLAPPortConfiguration) is compatible with the current DataSet. It checks that the types and
+     * required fields are present and that the incoming fields are all part of the present OLAPDataSet.
+     * @param configuration The configuration to be checked.
+     * @return A OLAPDataSetConfigurationValidationResult that contains information about the validity of the
+     * configuration and additional information about what fields are problematic in case the validation does not yield
+     * a positive result.
+     */
     public OLAPDataSetConfigurationValidationResult validateConfiguration(OLAPPortConfiguration configuration)
     {
         // Initialize object with results
