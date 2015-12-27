@@ -68,7 +68,7 @@ A typical JSON representation of the `OLAPDataSet` of the previous figure is sho
         "id" : "column1",
         "required" : false
       },
-      "data" : [ ]
+      "data" : [ "data1" ]
     },
     "intColumn1" : {
       "configurationData" : {
@@ -76,7 +76,7 @@ A typical JSON representation of the `OLAPDataSet` of the previous figure is sho
         "id" : "intColumn1",
         "required" : true
       },
-      "data" : [ 1 ]
+      "data" : [ 1, 2, 3, 4 ]
     },
     "stringColumn1" : {
       "configurationData" : {
@@ -84,7 +84,7 @@ A typical JSON representation of the `OLAPDataSet` of the previous figure is sho
         "id" : "stringColumn1",
         "required" : true
       },
-      "data" : [ "value1" ]
+      "data" : [ "value1", "value2" ]
     }
   }
 }
