@@ -15,7 +15,7 @@ public class OLAPPortMapping {
     private final OLAPColumnConfigurationData inputPort;
 
     /**
-     * Constructor for serialization pruproses
+     * Constructor for serialization purposes
      */
     public OLAPPortMapping(){
         this.outputPort = null;
