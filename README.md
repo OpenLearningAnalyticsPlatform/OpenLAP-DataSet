@@ -29,7 +29,7 @@ The OpenLAP-DataSet answer the need of the OpenLAP for a mechanism that can prov
 
 Since the OpenLAP-DataSet functions much like a typical DataBase table, the OpenLAP-DataSet is based on te concept of a
 simple aggregation of data arrays with a common denominator (an ID). These data arrays can be marked as required or not,
-and function much like a Data Base Column [MySQLRef][]. The grouping of these "Columns" is the OLAPDataSet. 
+and function much like a Data Base Column [MySQLRef](#references). The grouping of these "Columns" is the OLAPDataSet. 
 
 A naming scheme was developed in order to ease the usage of the OpenLAP-DataSet in code while aiming to maintain less
 verbose class names. All of the classes of the OpenLAP-DataSet use the prefix `OLAP`.
@@ -50,7 +50,7 @@ the <code>OLAPDataColumn</code> has two sections: The <code>OLAPColumnConfigurat
 <tr><td><img src="https://github.com/OpenLearningAnalyticsPlatform/OpenLAP-Architecture/blob/master/OpenLAP-DataSet/OpenLAP-DataSet_DataSetConcept.png" alt="OpenLAP-DataSet_DataSetConcept.png"/></td></tr>
 </table>
 
-In order to achieve this, a Factory design pattern [FactoryRef][] in the form of the class `OLAPDataColumnFactory`.
+In order to achieve this, a Factory design pattern [FactoryRef](#references) in the form of the class `OLAPDataColumnFactory`.
 The Factory enables the creation of `OLAPDataColumn` objects with a special type of enumerator parameter
 (`OLAPColumnDataType`)so the column's type always corresponds to it's data type.
 The `OLAPColumnDataType` supports the types of the primitives of a modern relational
@@ -239,7 +239,7 @@ System.out.println("Validation status: " + dataSet1.validateConfiguration(config
 ### JSON representation
 
 The relevant classes of the OpenLAP-DataSet can use the built-in `toString()` method to obtain a JSON representation.
-The OpenLAP uses [jackson][] as it's main JSON serializer/deserializer.
+The OpenLAP uses [jackson](#references) as it's main JSON serializer/deserializer.
 It is also possible to use other JSON serializer/deserializers.
 
 ## REFERENCES
