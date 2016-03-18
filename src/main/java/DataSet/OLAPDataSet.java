@@ -146,6 +146,33 @@ public class OLAPDataSet {
         return this.getColumnsConfigurationData(false);
     }
 
+    /**
+     * Method compares this OpenLAPDataSet against the one passed through in the argument of this function
+     *
+     * @param openLAPDataSetToCompare The Dataset to compare against
+     * @return true if both the column of this dataset are an exact match to that provided as an argument ot the function, false otherwise
+     */
+    public boolean compareToOLAPDataSet(OLAPDataSet openLAPDataSetToCompare) {
+        List<OLAPColumnConfigurationData> columnsFirstInstance = new ArrayList<>(this.getColumnsConfigurationData());
+        List<OLAPColumnConfigurationData> columnsSecondInstance = new ArrayList<>(openLAPDataSetToCompare.getColumnsConfigurationData());
+
+        if(columnsFirstInstance.size() != columnsSecondInstance.size())
+            return false;
+
+        for(OLAPColumnConfigurationData columnFirstInstance : columnsFirstInstance){
+            for(int i =0 ; i<columnsSecondInstance.size();i++){
+                if(columnFirstInstance.equals(columnsSecondInstance.get(i))){
+                    columnsSecondInstance.remove(i);
+                    break;
+                }
+            }
+        }
+        if(columnsSecondInstance.size()==0)
+            return true;
+        else
+            return false;
+
+    }
 
 
     /**
