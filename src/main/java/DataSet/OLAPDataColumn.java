@@ -39,6 +39,17 @@ public class OLAPDataColumn <T> {
     }
 
     /**
+     * Constructor that sets the OLAPColumnConfigurationData with the ID, type and required properties
+     * @param id ID of the OLAPDataColumn
+     * @param type OLAPColumnDataType of the data of the OLAPDataColumn
+     * @param isRequired Specifies if the OLAPDataColumn is required or not
+     */
+    public OLAPDataColumn(String id, OLAPColumnDataType type, boolean isRequired, String title, String description) {
+        this.configurationData = new OLAPColumnConfigurationData(id, type, isRequired, title, description);
+        this.data = new ArrayList<T>();
+    }
+
+    /**
      * Validates the correspondence of type and ID of another OLAPColumnConfigurationData
      * @param olapColumnConfigurationData OLAPColumnConfigurationData to be compared with
      * @return true if the compared OLAPColumnConfigurationData Type and ID corresponds to the current

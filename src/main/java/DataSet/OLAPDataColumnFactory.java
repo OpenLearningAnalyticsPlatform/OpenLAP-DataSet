@@ -45,4 +45,32 @@ public class OLAPDataColumnFactory {
                 throw new OLAPDataColumnException("Data type not supported");
         }
     }
+
+    public static final OLAPDataColumn createOLAPDataColumnOfType(String id, OLAPColumnDataType type,
+                                                                  boolean isRequired, String title, String description)
+            throws OLAPDataColumnException {
+        switch (type)
+        {
+            case BYTE:
+                return new OLAPDataColumn<Byte>(id, OLAPColumnDataType.BYTE, isRequired, title, description);
+            case SHORT:
+                return new OLAPDataColumn<Short>(id, OLAPColumnDataType.SHORT, isRequired, title, description);
+            case STRING:
+                return new OLAPDataColumn<String>(id, OLAPColumnDataType.STRING, isRequired, title, description);
+            case INTEGER:
+                return new OLAPDataColumn<Integer>(id, OLAPColumnDataType.INTEGER, isRequired, title, description);
+            case BOOLEAN:
+                return new OLAPDataColumn<Boolean>(id, OLAPColumnDataType.BOOLEAN, isRequired, title, description);
+            case LONG:
+                return new OLAPDataColumn<Long>(id, OLAPColumnDataType.LONG, isRequired, title, description);
+            case FLOAT:
+                return new OLAPDataColumn<Float>(id, OLAPColumnDataType.FLOAT, isRequired, title, description);
+            case LOCAL_DATE_TIME:
+                return new OLAPDataColumn<LocalDateTime>(id, OLAPColumnDataType.LOCAL_DATE_TIME, isRequired, title, description);
+            case CHAR:
+                return new OLAPDataColumn<Character>(id, OLAPColumnDataType.CHAR, isRequired, title, description);
+            default:
+                throw new OLAPDataColumnException("Data type not supported");
+        }
+    }
 }

@@ -11,6 +11,8 @@ public class OLAPColumnConfigurationData {
     private final OLAPColumnDataType type;
     private String id;
     private boolean required;
+    private String title;
+    private String description;
 
     /**
      * Constructor for serialization purposes
@@ -29,6 +31,15 @@ public class OLAPColumnConfigurationData {
         this.setRequired(required);
         this.type = type;
         this.setId(id);
+    }
+
+    
+    public OLAPColumnConfigurationData(String id, OLAPColumnDataType type, boolean required, String title, String description) {
+        this.setRequired(required);
+        this.type = type;
+        this.setId(id);
+        this.setTitle(title);
+        this.setDescription(description);
     }
 
     /**
@@ -64,6 +75,22 @@ public class OLAPColumnConfigurationData {
      */
     public void setRequired(boolean required) {
         this.required = required;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
@@ -106,6 +133,8 @@ public class OLAPColumnConfigurationData {
         int result = getType().hashCode();
         result = 31 * result + getId().hashCode();
         result = 31 * result + (isRequired() ? 1 : 0);
+        result = 31 * result + getTitle().hashCode();
+        result = 31 * result + getDescription().hashCode();
         return result;
     }
 
@@ -123,6 +152,8 @@ public class OLAPColumnConfigurationData {
                     "type=" + type +
                     ", id='" + id + '\'' +
                     ", required=" + required +
+                    ", title='" + title + '\'' +
+                    ", description='" + description + '\'' +
                     '}';
         }
     }
