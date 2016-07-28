@@ -69,24 +69,24 @@ public class OLAPDataSet {
 
         // Check for required fields
         validatePresenceRequiredColumns(configResult, values);
-        if(!configResult.isValid) return configResult;
+        if(!configResult.isValid()) return configResult;
 
         // Check for incoming fields being present
         validateInputColumnsCorrespondence(configResult, values);
-        if(!configResult.isValid) return configResult;
+        if(!configResult.isValid()) return configResult;
 
         for(OLAPPortMapping mappingEntry: configuration.getMapping())
         {
             // Validate types
             OLAPColumnConfigurationData inputColumn = mappingEntry.getInputPort();
             if (!inputColumn.validateConfigurationDataTypeFromOutputPort(mappingEntry.getOutputPort())){
-                configResult.setIsValid(false);
+                configResult.setValid(false);
                 configResult.appendValidationMessage(String.format("Port %s expected %s, got %s instead.",
                         inputColumn.getId(), inputColumn.getType(), mappingEntry.getOutputPort().getType()));
             }
         }
 
-        if(!configResult.isValid) return configResult;
+        if(!configResult.isValid()) return configResult;
         else
         {
             configResult.setValidationMessage(OLAPDataSetConfigurationValidationResult.VALID_CONFIGURATION);
@@ -188,7 +188,7 @@ public class OLAPDataSet {
         removeMatchingColumnData(requiredColumnConfigData, values);
         // If there are still elements left, there are missing values.
         if (requiredColumnConfigData.size()>0){
-            configResult.setIsValid(false);
+            configResult.setValid(false);
             configResult.appendValidationMessage("Required columns not found");
             // Put message of every column that is not found
             for (OLAPColumnConfigurationData remainingColumnConfigData:requiredColumnConfigData)
@@ -199,7 +199,7 @@ public class OLAPDataSet {
             }
         }
         // Otherwise the required fields are present
-        else configResult.setIsValid(true);
+        else configResult.setValid(true);
     }
 
     /**
@@ -217,7 +217,7 @@ public class OLAPDataSet {
         // If there are elements left, it means there is a mapping to be done.
         if(valuesCopy.size()>0)
         {
-            configResult.setIsValid(false);
+            configResult.setValid(false);
             configResult.appendValidationMessage("Columns not present on the destination DataSet");
             // Put message of every column that is not found
             for (OLAPColumnConfigurationData remainingColumn:valuesCopy)
@@ -228,7 +228,7 @@ public class OLAPDataSet {
             }
         }
         // Otherwise the required fields are present
-        else configResult.setIsValid(true);
+        else configResult.setValid(true);
     }
 
     /**
