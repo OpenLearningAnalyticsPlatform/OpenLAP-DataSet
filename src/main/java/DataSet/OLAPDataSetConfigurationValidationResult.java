@@ -8,14 +8,14 @@ package DataSet;
  */
 public class OLAPDataSetConfigurationValidationResult {
     public static final String VALID_CONFIGURATION = "Valid configuration";
-    boolean isValid;
+    boolean valid;
     String validationMessage;
 
     /**
      * Empty constructor.
      */
     public OLAPDataSetConfigurationValidationResult() {
-        this.isValid = false;
+        this.valid = false;
         this.validationMessage = "";
     }
 
@@ -25,7 +25,7 @@ public class OLAPDataSetConfigurationValidationResult {
      * @param validationMessage Message for validation result.
      */
     public OLAPDataSetConfigurationValidationResult(boolean isValid, String validationMessage) {
-        this.isValid = isValid;
+        this.valid = isValid;
         this.validationMessage = validationMessage;
     }
 
@@ -33,15 +33,16 @@ public class OLAPDataSetConfigurationValidationResult {
      * @return The result of the validation.
      */
     public boolean isValid() {
-        return isValid;
+        return valid;
     }
 
     /**
-     * @param isValid Value for setting the result of the validation, true if valid, otherwise false.
+     * @param valid Value for setting the result of the validation, true if valid, otherwise false.
      */
-    public void setIsValid(boolean isValid) {
-        this.isValid = isValid;
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
+
 
     /**
      * @return The information message of the validation.
