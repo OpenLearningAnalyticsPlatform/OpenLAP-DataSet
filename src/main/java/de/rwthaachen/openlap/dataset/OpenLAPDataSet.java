@@ -12,9 +12,9 @@ import java.util.List;
  * purposes:
  * 1. Enable easy incorporated serialization into JSON with human-readable form
  * 2. Enable the dynamic validation of types and required fields as well as enable the check of valid configurations,
- * i.e. mappings between different OLAPDataSets to determine they are compatible on their column Types and required
+ * i.e. mappings between different OpenLAPDataSets to determine they are compatible on their column Types and required
  * parameters.
- * The OLAPDataSets are to be used on the different macro components of the OpenLAP that need to transmit data and
+ * The OpenLAPDataSets are to be used on the different macro components of the OpenLAP that need to transmit data and
  * dynamically validate the types before transmitting payloads.
  */
 public class OpenLAPDataSet {
@@ -40,7 +40,7 @@ public class OpenLAPDataSet {
      * @param column The OpenLAPDataColumn to be added to the OpenLAPDataSet
      * @throws OpenLAPDataColumnException
      */
-    public void addOLAPDataColumn(OpenLAPDataColumn<?> column) throws OpenLAPDataColumnException {
+    public void addOpenLAPDataColumn(OpenLAPDataColumn<?> column) throws OpenLAPDataColumnException {
         String columnId = column.getConfigurationData().getId();
         if (columns.containsKey(columnId) || columnId.isEmpty() || columnId == null)
             throw new OpenLAPDataColumnException(OpenLAPDataColumnException.COLUMN_ALREADY_EXISTS, columnId);
@@ -98,7 +98,7 @@ public class OpenLAPDataSet {
     /***
      * Utility method to get all required columns
      * @param onlyRequiredColumns if true, returns only required columns
-     * @return A list of the OLAPDataColumns that are required
+     * @return A list of the OpenLAPDataColumns that are required
      */
     public List<OpenLAPDataColumn> getColumnsAsList(boolean onlyRequiredColumns)
     {
@@ -152,7 +152,7 @@ public class OpenLAPDataSet {
      * @param openLAPDataSetToCompare The Dataset to compare against
      * @return true if both the column of this dataset are an exact match to that provided as an argument ot the function, false otherwise
      */
-    public boolean compareToOLAPDataSet(OpenLAPDataSet openLAPDataSetToCompare) {
+    public boolean compareToOpenLAPDataSet(OpenLAPDataSet openLAPDataSetToCompare) {
         List<OpenLAPColumnConfigData> columnsFirstInstance = new ArrayList<>(this.getColumnsConfigurationData());
         List<OpenLAPColumnConfigData> columnsSecondInstance = new ArrayList<>(openLAPDataSetToCompare.getColumnsConfigurationData());
 

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 
 /**
- * Mapping between OpenLAPColumnConfigData. It uses an array of OLAPPortMappings that represents all the Output
+ * Mapping between OpenLAPColumnConfigData. It uses an array of OpenLAPPortMappings that represents all the Output
  * and Input Ports. Is important to note that "OutputPort" denotes a column configuration of the SOURCE macro component,
  * whereas the "InputPort" denotes the column configuration of the RECEIVING macro component.
  * It is name so because the SENDING macro component "outputs" data to the RECEIVING macro component "inputs".
@@ -24,14 +24,14 @@ public class OpenLAPPortConfig {
 
     /**
      * Standard constructor
-     * @param mapping An Array of OLAPPortMappings
+     * @param mapping An Array of OpenLAPPortMappings
      */
     public OpenLAPPortConfig(ArrayList<OpenLAPPortMapping> mapping) {
         this.mapping = mapping;
     }
 
     /**
-     * @return The Array of OLAPPortMappings
+     * @return The Array of OpenLAPPortMappings
      */
     public ArrayList<OpenLAPPortMapping> getMapping() {
         return mapping;
@@ -44,7 +44,7 @@ public class OpenLAPPortConfig {
     @JsonIgnore
     public ArrayList<OpenLAPColumnConfigData> getOutputColumnConfigurationData()
     {
-        return getConfigData(OLAPConfigDataSides.OUTPUTDATA);
+        return getConfigData(OpenLAPConfigDataSides.OUTPUTDATA);
     }
 
     /**
@@ -54,21 +54,21 @@ public class OpenLAPPortConfig {
     @JsonIgnore
     public ArrayList<OpenLAPColumnConfigData> getInputColumnConfigurationData()
     {
-        return getConfigData(OLAPConfigDataSides.INPUTDATA);
+        return getConfigData(OpenLAPConfigDataSides.INPUTDATA);
     }
 
     /**
      * Gets the input or the output side of the array of OpenLAPPortMapping
-     * @param side OLAPConfigDataSides.OUTPUTDATA or OLAPConfigDataSides.INPUTDATA to define which side to get
+     * @param side OpenLAPConfigDataSides.OUTPUTDATA or OpenLAPConfigDataSides.INPUTDATA to define which side to get
      * @return OpenLAPPortMapping arrazy with either the output configurations or the input configurations
      */
-    private ArrayList<OpenLAPColumnConfigData> getConfigData(OLAPConfigDataSides side) {
+    private ArrayList<OpenLAPColumnConfigData> getConfigData(OpenLAPConfigDataSides side) {
         ArrayList<OpenLAPColumnConfigData> result = new ArrayList<OpenLAPColumnConfigData>();
 
         for (OpenLAPPortMapping mappingEntry : this.mapping)
         {
             // OutputData required
-            if (side == OLAPConfigDataSides.OUTPUTDATA)
+            if (side == OpenLAPConfigDataSides.OUTPUTDATA)
             {
                 result.add(mappingEntry.getOutputPort());
             }
@@ -97,7 +97,7 @@ public class OpenLAPPortConfig {
     /**
      * Possible directions of data of the configuration.
      */
-    private enum OLAPConfigDataSides
+    private enum OpenLAPConfigDataSides
     {
         OUTPUTDATA,
         INPUTDATA

@@ -34,17 +34,17 @@ public class ConfigurationValidationTests {
 
         try {
             stringColumn1 =
-                    OpenLAPDataColumnFactory.createOLAPDataColumnOfType("stringColumn1", OpenLAPColumnDataType.STRING, false);
+                    OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("stringColumn1", OpenLAPColumnDataType.STRING, false);
             stringColumn2 =
-                    OpenLAPDataColumnFactory.createOLAPDataColumnOfType("stringColumn2", OpenLAPColumnDataType.STRING, false);
+                    OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("stringColumn2", OpenLAPColumnDataType.STRING, false);
             intColumn1 =
-                    OpenLAPDataColumnFactory.createOLAPDataColumnOfType("intColumn1", OpenLAPColumnDataType.INTEGER, false);
+                    OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("intColumn1", OpenLAPColumnDataType.INTEGER, false);
             intColumn2 =
-                    OpenLAPDataColumnFactory.createOLAPDataColumnOfType("intColumn2", OpenLAPColumnDataType.INTEGER, false);
+                    OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("intColumn2", OpenLAPColumnDataType.INTEGER, false);
             noNameColumn =
-                    OpenLAPDataColumnFactory.createOLAPDataColumnOfType("", OpenLAPColumnDataType.INTEGER, false);
+                    OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("", OpenLAPColumnDataType.INTEGER, false);
             nullColumn =
-                    OpenLAPDataColumnFactory.createOLAPDataColumnOfType(null, OpenLAPColumnDataType.INTEGER, false);
+                    OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType(null, OpenLAPColumnDataType.INTEGER, false);
             dataSet1 = new OpenLAPDataSet();
             dataSet2 = new OpenLAPDataSet();
 
@@ -54,7 +54,7 @@ public class ConfigurationValidationTests {
     }
 
     @Test
-    public void OLAPDataColumnValidationTest()
+    public void OpenLAPDataColumnValidationTest()
     {
         // Valid configuration
         Assert.assertTrue(stringColumn1.validateConfigurationData(stringColumn1.getConfigurationData()));
@@ -66,19 +66,19 @@ public class ConfigurationValidationTests {
     }
 
     @Test
-    public void OLAPDataSetConfigurationValidationTest() throws OpenLAPDataColumnException {
-        System.out.println("==Test Start: OLAPDataSetConfigurationValidationTest==");
+    public void OpenLAPDataSetConfigurationValidationTest() throws OpenLAPDataColumnException {
+        System.out.println("==Test Start: OpenLAPDataSetConfigurationValidationTest==");
         OpenLAPPortConfig configuration1 = new OpenLAPPortConfig();
         OpenLAPPortConfig configuration2 = new OpenLAPPortConfig();
         OpenLAPPortConfig configuration3 = new OpenLAPPortConfig();
         OpenLAPPortConfig configuration4 = new OpenLAPPortConfig();
 
-        dataSet1.addOLAPDataColumn(
-                OpenLAPDataColumnFactory.createOLAPDataColumnOfType("intColumn1", OpenLAPColumnDataType.INTEGER,true));
-        dataSet1.addOLAPDataColumn(
-                OpenLAPDataColumnFactory.createOLAPDataColumnOfType("stringColumn1", OpenLAPColumnDataType.STRING,true));
-        dataSet1.addOLAPDataColumn(
-                OpenLAPDataColumnFactory.createOLAPDataColumnOfType("bananito", OpenLAPColumnDataType.STRING,false));
+        dataSet1.addOpenLAPDataColumn(
+                OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("intColumn1", OpenLAPColumnDataType.INTEGER,true));
+        dataSet1.addOpenLAPDataColumn(
+                OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("stringColumn1", OpenLAPColumnDataType.STRING,true));
+        dataSet1.addOpenLAPDataColumn(
+                OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("bananito", OpenLAPColumnDataType.STRING,false));
 
         // Configuration1 - Valid
         configuration1.getMapping().add
@@ -86,7 +86,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         intColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("intColumn1", OpenLAPColumnDataType.INTEGER, false).
                                                 getConfigurationData()
                                 )
@@ -96,7 +96,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         stringColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("stringColumn1", OpenLAPColumnDataType.STRING, false).
                                                 getConfigurationData()
                                 )
@@ -106,7 +106,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         stringColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("bananito", OpenLAPColumnDataType.STRING,false).
                                                 getConfigurationData()
                                 )
@@ -118,7 +118,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         intColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("bananito", OpenLAPColumnDataType.STRING,false).
                                                 getConfigurationData()
                                 )
@@ -128,7 +128,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         intColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("intColumn1", OpenLAPColumnDataType.INTEGER,false).
                                                 getConfigurationData()
                                 )
@@ -138,7 +138,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         stringColumn2.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("stringColumn1", OpenLAPColumnDataType.STRING,false).
                                                 getConfigurationData()
                                 )
@@ -150,7 +150,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         intColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("intColumn1", OpenLAPColumnDataType.INTEGER, false).
                                                 getConfigurationData()
                                 )
@@ -160,7 +160,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         stringColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("bananito", OpenLAPColumnDataType.STRING,false).
                                                 getConfigurationData()
                                 )
@@ -172,7 +172,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         intColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("intColumn1", OpenLAPColumnDataType.INTEGER, false).
                                                 getConfigurationData()
                                 )
@@ -182,7 +182,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         stringColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("stringColumn1", OpenLAPColumnDataType.STRING, false).
                                                 getConfigurationData()
                                 )
@@ -192,7 +192,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         stringColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("SomethingElse", OpenLAPColumnDataType.STRING,false).
                                                 getConfigurationData()
                                 )
@@ -238,11 +238,11 @@ public class ConfigurationValidationTests {
         Assert.assertEquals("Columns not present on the destination DataSet\n" +
                         "Column: SomethingElse does not exist in the destination dataset",
                 configurationValidationResult4.getValidationMessage());
-        System.out.println("==Test Finish: OLAPDataSetConfigurationValidationTest==");
+        System.out.println("==Test Finish: OpenLAPDataSetConfigurationValidationTest==");
     }
 
     @Test
-    public void OLAPConfigurationSerializationTests() throws OpenLAPDataColumnException, IOException {
+    public void OpenLAPConfigurationSerializationTests() throws OpenLAPDataColumnException, IOException {
         OpenLAPPortConfig configuration1 = new OpenLAPPortConfig();
         OpenLAPPortConfig configuration2;
 
@@ -252,7 +252,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         intColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("intColumn1", OpenLAPColumnDataType.INTEGER, false).
                                                 getConfigurationData()
                                 )
@@ -262,7 +262,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         stringColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("stringColumn1", OpenLAPColumnDataType.STRING, false).
                                                 getConfigurationData()
                                 )
@@ -272,7 +272,7 @@ public class ConfigurationValidationTests {
                         new OpenLAPPortMapping
                                 (
                                         stringColumn1.getConfigurationData(),
-                                        OpenLAPDataColumnFactory.createOLAPDataColumnOfType
+                                        OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType
                                                 ("bananito", OpenLAPColumnDataType.STRING,false).
                                                 getConfigurationData()
                                 )
@@ -287,15 +287,15 @@ public class ConfigurationValidationTests {
     }
 
     @Test
-    public void OLAPDataSetSerialization() throws IOException, OpenLAPDataColumnException {
+    public void OpenLAPDataSetSerialization() throws IOException, OpenLAPDataColumnException {
 
         // Setup dataset manually
-        dataSet1.addOLAPDataColumn(
-                OpenLAPDataColumnFactory.createOLAPDataColumnOfType("intColumn1", OpenLAPColumnDataType.INTEGER,true));
-        dataSet1.addOLAPDataColumn(
-                OpenLAPDataColumnFactory.createOLAPDataColumnOfType("stringColumn1", OpenLAPColumnDataType.STRING,true));
-        dataSet1.addOLAPDataColumn(
-                OpenLAPDataColumnFactory.createOLAPDataColumnOfType("bananito", OpenLAPColumnDataType.STRING,false));
+        dataSet1.addOpenLAPDataColumn(
+                OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("intColumn1", OpenLAPColumnDataType.INTEGER,true));
+        dataSet1.addOpenLAPDataColumn(
+                OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("stringColumn1", OpenLAPColumnDataType.STRING,true));
+        dataSet1.addOpenLAPDataColumn(
+                OpenLAPDataColumnFactory.createOpenLAPDataColumnOfType("bananito", OpenLAPColumnDataType.STRING,false));
         dataSet1.getColumns().get("intColumn1").getData().add(1);
         dataSet1.getColumns().get("stringColumn1").getData().add("value1");
 

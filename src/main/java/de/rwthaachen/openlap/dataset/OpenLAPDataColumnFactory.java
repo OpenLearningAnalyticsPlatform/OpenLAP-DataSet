@@ -5,7 +5,7 @@ import de.rwthaachen.openlap.exceptions.OpenLAPDataColumnException;
 import java.time.LocalDateTime;
 
 /**
- * This Factory should be used to create the OLAPDataColumns on OLAPDataSets. IT holds a method that accepts
+ * This Factory should be used to create the OpenLAPDataColumns on OpenLAPDataSets. IT holds a method that accepts
  * an ID, a type and the setting for required or not and returns a prepared OpenLAPDataColumn.
  */
 public class OpenLAPDataColumnFactory {
@@ -18,7 +18,7 @@ public class OpenLAPDataColumnFactory {
      * @return a new OpenLAPDataColumn initialized with the given ID, Type and requirement parameter and no data
      * @throws OpenLAPDataColumnException if the entered type is not recognized.
      */
-    public static final OpenLAPDataColumn createOLAPDataColumnOfType(String id, OpenLAPColumnDataType type,
+    public static final OpenLAPDataColumn createOpenLAPDataColumnOfType(String id, OpenLAPColumnDataType type,
                                                                      boolean isRequired)
             throws OpenLAPDataColumnException {
         switch (type)
@@ -46,7 +46,7 @@ public class OpenLAPDataColumnFactory {
         }
     }
 
-    public static final OpenLAPDataColumn createOLAPDataColumnOfType(String id, OpenLAPColumnDataType type,
+    public static final OpenLAPDataColumn createOpenLAPDataColumnOfType(String id, OpenLAPColumnDataType type,
                                                                      boolean isRequired, String title, String description)
             throws OpenLAPDataColumnException {
         switch (type)

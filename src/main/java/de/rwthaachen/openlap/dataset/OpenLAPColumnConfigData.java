@@ -24,7 +24,7 @@ public class OpenLAPColumnConfigData {
     /**
      * Constructor with data, id and type
      * @param id ID of the OpenLAPDataColumn
-     * @param type An OLAPColumDataType that describes the type of data of this OpenLAPDataColumn
+     * @param type An OpenLAPColumDataType that describes the type of data of this OpenLAPDataColumn
      * @param required Specifies if the OpenLAPDataColumn is required or not
      */
     public OpenLAPColumnConfigData(String id, OpenLAPColumnDataType type, boolean required) {
