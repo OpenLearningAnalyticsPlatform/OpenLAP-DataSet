@@ -1,10 +1,10 @@
-package DataSet;
+package de.rwthaachen.openlap.dataset;
 
 /**
- * Types that can be used on OLAPColumnConfigurationData.
+ * Types that can be used on OpenLAPColumnConfigData.
  * Ideally, they should correspond to DataBase primitive types
  */
-public enum OLAPColumnDataType {
+public enum OpenLAPColumnDataType {
     BYTE,
     SHORT,
     STRING,

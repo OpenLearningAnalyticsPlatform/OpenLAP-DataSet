@@ -1,7 +1,7 @@
-package DataSet;
+package de.rwthaachen.openlap.dataset;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import exceptions.OLAPDataColumnException;
+import de.rwthaachen.openlap.exceptions.OpenLAPDataColumnException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,33 +17,33 @@ import java.util.List;
  * The OLAPDataSets are to be used on the different macro components of the OpenLAP that need to transmit data and
  * dynamically validate the types before transmitting payloads.
  */
-public class OLAPDataSet {
-    // Map of the columns with the String ID. The string is taken from the OLAPColumnConfigurationData of the column.
-    private HashMap<String, OLAPDataColumn> columns;
+public class OpenLAPDataSet {
+    // Map of the columns with the String ID. The string is taken from the OpenLAPColumnConfigData of the column.
+    private HashMap<String, OpenLAPDataColumn> columns;
 
     /**
      * Empty constructor
      */
-    public OLAPDataSet() {
-        this.columns = new HashMap<String, OLAPDataColumn>();
+    public OpenLAPDataSet() {
+        this.columns = new HashMap<String, OpenLAPDataColumn>();
     }
 
     /**
      * @return the Columns with their respective IDs
      */
-    public HashMap<String, OLAPDataColumn> getColumns() {
+    public HashMap<String, OpenLAPDataColumn> getColumns() {
         return columns;
     }
 
     /**
-     * Adds a column to this OLAPDataSet. Should be added with the help of the OLAPDataColumnFactory
-     * @param column The OLAPDataColumn to be added to the OLAPDataSet
-     * @throws OLAPDataColumnException
+     * Adds a column to this OpenLAPDataSet. Should be added with the help of the OpenLAPDataColumnFactory
+     * @param column The OpenLAPDataColumn to be added to the OpenLAPDataSet
+     * @throws OpenLAPDataColumnException
      */
-    public void addOLAPDataColumn(OLAPDataColumn<?> column) throws OLAPDataColumnException {
+    public void addOLAPDataColumn(OpenLAPDataColumn<?> column) throws OpenLAPDataColumnException {
         String columnId = column.getConfigurationData().getId();
         if (columns.containsKey(columnId) || columnId.isEmpty() || columnId == null)
-            throw new OLAPDataColumnException(OLAPDataColumnException.COLUMN_ALREADY_EXISTS, columnId);
+            throw new OpenLAPDataColumnException(OpenLAPDataColumnException.COLUMN_ALREADY_EXISTS, columnId);
         else
         {
             columns.put(columnId, column);
@@ -51,21 +51,21 @@ public class OLAPDataSet {
     }
 
     /**
-     * This method realizes the need for the OLAPDataSet to be able to dynamically (on runtime) check wheter a
-     * configuration (of the OLAPPortConfiguration) is compatible with the current DataSet. It checks that the types and
-     * required fields are present and that the incoming fields are all part of the present OLAPDataSet.
+     * This method realizes the need for the OpenLAPDataSet to be able to dynamically (on runtime) check wheter a
+     * configuration (of the OpenLAPPortConfig) is compatible with the current DataSet. It checks that the types and
+     * required fields are present and that the incoming fields are all part of the present OpenLAPDataSet.
      * @param configuration The configuration to be checked.
-     * @return A OLAPDataSetConfigurationValidationResult that contains information about the validity of the
+     * @return A OpenLAPDataSetConfigValidationResult that contains information about the validity of the
      * configuration and additional information about what fields are problematic in case the validation does not yield
      * a positive result.
      */
-    public OLAPDataSetConfigurationValidationResult validateConfiguration(OLAPPortConfiguration configuration)
+    public OpenLAPDataSetConfigValidationResult validateConfiguration(OpenLAPPortConfig configuration)
     {
         // Initialize object with results
-        OLAPDataSetConfigurationValidationResult configResult = new OLAPDataSetConfigurationValidationResult();
+        OpenLAPDataSetConfigValidationResult configResult = new OpenLAPDataSetConfigValidationResult();
         // Get the input as a list
-        List<OLAPColumnConfigurationData> values =
-                new ArrayList<OLAPColumnConfigurationData>(configuration.getInputColumnConfigurationData());
+        List<OpenLAPColumnConfigData> values =
+                new ArrayList<OpenLAPColumnConfigData>(configuration.getInputColumnConfigurationData());
 
         // Check for required fields
         validatePresenceRequiredColumns(configResult, values);
@@ -75,10 +75,10 @@ public class OLAPDataSet {
         validateInputColumnsCorrespondence(configResult, values);
         if(!configResult.isValid()) return configResult;
 
-        for(OLAPPortMapping mappingEntry: configuration.getMapping())
+        for(OpenLAPPortMapping mappingEntry: configuration.getMapping())
         {
             // Validate types
-            OLAPColumnConfigurationData inputColumn = mappingEntry.getInputPort();
+            OpenLAPColumnConfigData inputColumn = mappingEntry.getInputPort();
             if (!inputColumn.validateConfigurationDataTypeFromOutputPort(mappingEntry.getOutputPort())){
                 configResult.setValid(false);
                 configResult.appendValidationMessage(String.format("Port %s expected %s, got %s instead.",
@@ -89,7 +89,7 @@ public class OLAPDataSet {
         if(!configResult.isValid()) return configResult;
         else
         {
-            configResult.setValidationMessage(OLAPDataSetConfigurationValidationResult.VALID_CONFIGURATION);
+            configResult.setValidationMessage(OpenLAPDataSetConfigValidationResult.VALID_CONFIGURATION);
             return configResult;
         }
     }
@@ -100,14 +100,14 @@ public class OLAPDataSet {
      * @param onlyRequiredColumns if true, returns only required columns
      * @return A list of the OLAPDataColumns that are required
      */
-    public List<OLAPDataColumn> getColumnsAsList(boolean onlyRequiredColumns)
+    public List<OpenLAPDataColumn> getColumnsAsList(boolean onlyRequiredColumns)
     {
-        List<OLAPDataColumn> columns = new ArrayList<OLAPDataColumn>(this.columns.values());
+        List<OpenLAPDataColumn> columns = new ArrayList<OpenLAPDataColumn>(this.columns.values());
         if (!onlyRequiredColumns) return columns;
         else
         {
-            List<OLAPDataColumn> requiredColumns = new ArrayList<OLAPDataColumn>();
-            for (OLAPDataColumn column: columns)
+            List<OpenLAPDataColumn> requiredColumns = new ArrayList<OpenLAPDataColumn>();
+            for (OpenLAPDataColumn column: columns)
             {
                 if (column.getConfigurationData().isRequired()) requiredColumns.add(column);
             }
@@ -117,19 +117,19 @@ public class OLAPDataSet {
 
     /**
      * Utility method to get all required columns configuration data
-     * @param onlyRequiredColumnsConfigurationData if true, returns only required columns OLAPColumnConfigurationData
-     * @return a list with the OLAPColumnConfigurationData of the required columns
+     * @param onlyRequiredColumnsConfigurationData if true, returns only required columns OpenLAPColumnConfigData
+     * @return a list with the OpenLAPColumnConfigData of the required columns
      */
-    public List<OLAPColumnConfigurationData> getColumnsConfigurationData(boolean onlyRequiredColumnsConfigurationData)
+    public List<OpenLAPColumnConfigData> getColumnsConfigurationData(boolean onlyRequiredColumnsConfigurationData)
     {
-        List<OLAPDataColumn> columns;
+        List<OpenLAPDataColumn> columns;
         if (onlyRequiredColumnsConfigurationData)
             columns = getColumnsAsList(true);
         else columns = getColumnsAsList(false);
 
-        List<OLAPColumnConfigurationData> result = new ArrayList<OLAPColumnConfigurationData>();
+        List<OpenLAPColumnConfigData> result = new ArrayList<OpenLAPColumnConfigData>();
 
-        for(OLAPDataColumn column : columns)
+        for(OpenLAPDataColumn column : columns)
         {
             result.add(column.getConfigurationData());
         }
@@ -137,11 +137,11 @@ public class OLAPDataSet {
     }
 
     /**
-     * Get a list of the OLAPColumnConfigurationData of all the columns of the Dataset
-     * @return Get a list of the OLAPColumnConfigurationData of all the columns of the Dataset
+     * Get a list of the OpenLAPColumnConfigData of all the columns of the Dataset
+     * @return Get a list of the OpenLAPColumnConfigData of all the columns of the Dataset
      */
     @JsonIgnore
-    public List<OLAPColumnConfigurationData> getColumnsConfigurationData()
+    public List<OpenLAPColumnConfigData> getColumnsConfigurationData()
     {
         return this.getColumnsConfigurationData(false);
     }
@@ -152,14 +152,14 @@ public class OLAPDataSet {
      * @param openLAPDataSetToCompare The Dataset to compare against
      * @return true if both the column of this dataset are an exact match to that provided as an argument ot the function, false otherwise
      */
-    public boolean compareToOLAPDataSet(OLAPDataSet openLAPDataSetToCompare) {
-        List<OLAPColumnConfigurationData> columnsFirstInstance = new ArrayList<>(this.getColumnsConfigurationData());
-        List<OLAPColumnConfigurationData> columnsSecondInstance = new ArrayList<>(openLAPDataSetToCompare.getColumnsConfigurationData());
+    public boolean compareToOLAPDataSet(OpenLAPDataSet openLAPDataSetToCompare) {
+        List<OpenLAPColumnConfigData> columnsFirstInstance = new ArrayList<>(this.getColumnsConfigurationData());
+        List<OpenLAPColumnConfigData> columnsSecondInstance = new ArrayList<>(openLAPDataSetToCompare.getColumnsConfigurationData());
 
         if(columnsFirstInstance.size() != columnsSecondInstance.size())
             return false;
 
-        for(OLAPColumnConfigurationData columnFirstInstance : columnsFirstInstance){
+        for(OpenLAPColumnConfigData columnFirstInstance : columnsFirstInstance){
             for(int i =0 ; i<columnsSecondInstance.size();i++){
                 if(columnFirstInstance.equals(columnsSecondInstance.get(i))){
                     columnsSecondInstance.remove(i);
@@ -180,10 +180,10 @@ public class OLAPDataSet {
      * @param configResult The config result object that can be modified to contain error messages
      * @param values The list to be checked if contains all the required values.
      */
-    private void validatePresenceRequiredColumns(OLAPDataSetConfigurationValidationResult configResult,
-                                                 List<OLAPColumnConfigurationData> values) {
+    private void validatePresenceRequiredColumns(OpenLAPDataSetConfigValidationResult configResult,
+                                                 List<OpenLAPColumnConfigData> values) {
         // Initialize a list of the required columns
-        List<OLAPColumnConfigurationData> requiredColumnConfigData = getColumnsConfigurationData(true);
+        List<OpenLAPColumnConfigData> requiredColumnConfigData = getColumnsConfigurationData(true);
         // Remove from the list all the items that are in the values
         removeMatchingColumnData(requiredColumnConfigData, values);
         // If there are still elements left, there are missing values.
@@ -191,7 +191,7 @@ public class OLAPDataSet {
             configResult.setValid(false);
             configResult.appendValidationMessage("Required columns not found");
             // Put message of every column that is not found
-            for (OLAPColumnConfigurationData remainingColumnConfigData:requiredColumnConfigData)
+            for (OpenLAPColumnConfigData remainingColumnConfigData:requiredColumnConfigData)
             {
                 configResult.appendValidationMessage(
                         String.format("Column: %s is not found", remainingColumnConfigData.getId())
@@ -207,11 +207,11 @@ public class OLAPDataSet {
      * @param configResult The config result object that can be modified to contain error messages
      * @param values The list of columns to be checked if is all contained in the DataSet.
      */
-    private void validateInputColumnsCorrespondence(OLAPDataSetConfigurationValidationResult configResult,
-                                                    List<OLAPColumnConfigurationData> values) {
+    private void validateInputColumnsCorrespondence(OpenLAPDataSetConfigValidationResult configResult,
+                                                    List<OpenLAPColumnConfigData> values) {
         // Get the columns present on the dataset
-        List<OLAPColumnConfigurationData> dataSetColumns = getColumnsConfigurationData();
-        List<OLAPColumnConfigurationData> valuesCopy = new ArrayList<OLAPColumnConfigurationData>(values);
+        List<OpenLAPColumnConfigData> dataSetColumns = getColumnsConfigurationData();
+        List<OpenLAPColumnConfigData> valuesCopy = new ArrayList<OpenLAPColumnConfigData>(values);
         // Remove from the list all the items that are in the dataSet Columns
         removeMatchingColumnData(valuesCopy, dataSetColumns);
         // If there are elements left, it means there is a mapping to be done.
@@ -220,7 +220,7 @@ public class OLAPDataSet {
             configResult.setValid(false);
             configResult.appendValidationMessage("Columns not present on the destination DataSet");
             // Put message of every column that is not found
-            for (OLAPColumnConfigurationData remainingColumn:valuesCopy)
+            for (OpenLAPColumnConfigData remainingColumn:valuesCopy)
             {
                 configResult.appendValidationMessage(
                         String.format("Column: %s does not exist in the destination dataset", remainingColumn.getId())
@@ -236,10 +236,10 @@ public class OLAPDataSet {
      * @param original
      * @param removalList
      */
-    private void removeMatchingColumnData(List<OLAPColumnConfigurationData> original,
-                                          List<OLAPColumnConfigurationData> removalList) {
+    private void removeMatchingColumnData(List<OpenLAPColumnConfigData> original,
+                                          List<OpenLAPColumnConfigData> removalList) {
         //for each element of the removal list check if is valid on the original
-        for (OLAPColumnConfigurationData removalListConfig: removalList)
+        for (OpenLAPColumnConfigData removalListConfig: removalList)
         {
             original.removeIf(e -> (e.validateConfigurationDataCorrespondence(removalListConfig)));
         }
@@ -248,9 +248,9 @@ public class OLAPDataSet {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof OLAPDataSet)) return false;
+        if (!(o instanceof OpenLAPDataSet)) return false;
 
-        OLAPDataSet that = (OLAPDataSet) o;
+        OpenLAPDataSet that = (OpenLAPDataSet) o;
 
         return !(getColumns() != null ? !getColumns().equals(that.getColumns()) : that.getColumns() != null);
 

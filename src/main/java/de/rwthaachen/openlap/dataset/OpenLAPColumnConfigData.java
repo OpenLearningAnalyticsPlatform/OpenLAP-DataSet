@@ -1,14 +1,14 @@
-package DataSet;
+package de.rwthaachen.openlap.dataset;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * This class contains the configuration data of a OLAPDataColumn, it is encapsulated for easy comparison of
+ * This class contains the configuration data of a OpenLAPDataColumn, it is encapsulated for easy comparison of
  * configurations and for serialization separated from the data.
  */
-public class OLAPColumnConfigurationData {
-    private final OLAPColumnDataType type;
+public class OpenLAPColumnConfigData {
+    private final OpenLAPColumnDataType type;
     private String id;
     private boolean required;
     private String title;
@@ -17,24 +17,24 @@ public class OLAPColumnConfigurationData {
     /**
      * Constructor for serialization purposes
      */
-    public OLAPColumnConfigurationData() {
+    public OpenLAPColumnConfigData() {
         this.type = null;
     }
 
     /**
      * Constructor with data, id and type
-     * @param id ID of the OLAPDataColumn
-     * @param type An OLAPColumDataType that describes the type of data of this OLAPDataColumn
-     * @param required Specifies if the OLAPDataColumn is required or not
+     * @param id ID of the OpenLAPDataColumn
+     * @param type An OLAPColumDataType that describes the type of data of this OpenLAPDataColumn
+     * @param required Specifies if the OpenLAPDataColumn is required or not
      */
-    public OLAPColumnConfigurationData(String id, OLAPColumnDataType type, boolean required) {
+    public OpenLAPColumnConfigData(String id, OpenLAPColumnDataType type, boolean required) {
         this.setRequired(required);
         this.type = type;
         this.setId(id);
     }
 
     
-    public OLAPColumnConfigurationData(String id, OLAPColumnDataType type, boolean required, String title, String description) {
+    public OpenLAPColumnConfigData(String id, OpenLAPColumnDataType type, boolean required, String title, String description) {
         this.setRequired(required);
         this.type = type;
         this.setId(id);
@@ -43,14 +43,14 @@ public class OLAPColumnConfigurationData {
     }
 
     /**
-     * @return Type of the OLAPDataColumn
+     * @return Type of the OpenLAPDataColumn
      */
-    public OLAPColumnDataType getType() {
+    public OpenLAPColumnDataType getType() {
         return type;
     }
 
     /**
-     * @return ID of the OLAPDataColumn
+     * @return ID of the OpenLAPDataColumn
      */
     public String getId() {
         return id;
@@ -64,14 +64,14 @@ public class OLAPColumnConfigurationData {
     }
 
     /**
-     * @return true if OLAPDataColumn is required, otherwise false
+     * @return true if OpenLAPDataColumn is required, otherwise false
      */
     public boolean isRequired() {
         return required;
     }
 
     /**
-     * @param required set the OLAPDataColumn to required or not
+     * @param required set the OpenLAPDataColumn to required or not
      */
     public void setRequired(boolean required) {
         this.required = required;
@@ -94,22 +94,22 @@ public class OLAPColumnConfigurationData {
     }
 
     /**
-     * Validates the correspondence of type and ID of another OLAPColumnConfigurationData
-     * @param olapColumnConfigurationData OLAPColumnConfigurationData to be compared with
-     * @return true if the compared OLAPColumnConfigurationData Type and ID corresponds to the current
-     * OLAPColumnConfigurationData
+     * Validates the correspondence of type and ID of another OpenLAPColumnConfigData
+     * @param openLAPColumnConfigData OpenLAPColumnConfigData to be compared with
+     * @return true if the compared OpenLAPColumnConfigData Type and ID corresponds to the current
+     * OpenLAPColumnConfigData
      */
-    public boolean validateConfigurationDataCorrespondence(OLAPColumnConfigurationData olapColumnConfigurationData) {
-        return olapColumnConfigurationData.getType().equals(this.getType())
-                && (olapColumnConfigurationData.getId().equals(this.getId()));
+    public boolean validateConfigurationDataCorrespondence(OpenLAPColumnConfigData openLAPColumnConfigData) {
+        return openLAPColumnConfigData.getType().equals(this.getType())
+                && (openLAPColumnConfigData.getId().equals(this.getId()));
     }
 
     /**
-     * Validate the correspondance of the type of another OLAPColumnConfigurationData
-     * @param outputPortConfigData OLAPColumnConfigurationData to be compared with this OLAPColumnConfigurationData
-     * @return true if the type is the same and the other OLAPColumnConfigurationData id is not empty or null
+     * Validate the correspondance of the type of another OpenLAPColumnConfigData
+     * @param outputPortConfigData OpenLAPColumnConfigData to be compared with this OpenLAPColumnConfigData
+     * @return true if the type is the same and the other OpenLAPColumnConfigData id is not empty or null
      */
-    public boolean validateConfigurationDataTypeFromOutputPort(OLAPColumnConfigurationData outputPortConfigData)
+    public boolean validateConfigurationDataTypeFromOutputPort(OpenLAPColumnConfigData outputPortConfigData)
     {
         return outputPortConfigData.getType().equals(this.getType())
                 && (outputPortConfigData.getId() != null && !outputPortConfigData.getId().isEmpty());
@@ -118,9 +118,9 @@ public class OLAPColumnConfigurationData {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof OLAPColumnConfigurationData)) return false;
+        if (!(o instanceof OpenLAPColumnConfigData)) return false;
 
-        OLAPColumnConfigurationData that = (OLAPColumnConfigurationData) o;
+        OpenLAPColumnConfigData that = (OpenLAPColumnConfigData) o;
 
         // if (isRequired() && isRequired() != that.isRequired()) return false;
         if (getType() != that.getType()) return false;
@@ -148,7 +148,7 @@ public class OLAPColumnConfigurationData {
         try {
             return mapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {
-            return "OLAPColumnConfigurationData{" +
+            return "OpenLAPColumnConfigData{" +
                     "type=" + type +
                     ", id='" + id + '\'' +
                     ", required=" + required +

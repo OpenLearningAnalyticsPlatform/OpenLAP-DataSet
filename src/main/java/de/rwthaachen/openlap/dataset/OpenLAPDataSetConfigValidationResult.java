@@ -1,12 +1,12 @@
-package DataSet;
+package de.rwthaachen.openlap.dataset;
 
 /**
- * This object encapsulates the validation operation of a configuration of an OLAPDataSet. It contains two main fields:
+ * This object encapsulates the validation operation of a configuration of an OpenLAPDataSet. It contains two main fields:
  * One describing the validation result as a boolean, another with additional information of the validation process,
  * most useful when the validation does not pass, since describes which fields and reasons caused the validation
  * to fail.
  */
-public class OLAPDataSetConfigurationValidationResult {
+public class OpenLAPDataSetConfigValidationResult {
     public static final String VALID_CONFIGURATION = "Valid configuration";
     boolean valid;
     String validationMessage;
@@ -14,7 +14,7 @@ public class OLAPDataSetConfigurationValidationResult {
     /**
      * Empty constructor.
      */
-    public OLAPDataSetConfigurationValidationResult() {
+    public OpenLAPDataSetConfigValidationResult() {
         this.valid = false;
         this.validationMessage = "";
     }
@@ -24,7 +24,7 @@ public class OLAPDataSetConfigurationValidationResult {
      * @param isValid True if validation passed, false otherwise.
      * @param validationMessage Message for validation result.
      */
-    public OLAPDataSetConfigurationValidationResult(boolean isValid, String validationMessage) {
+    public OpenLAPDataSetConfigValidationResult(boolean isValid, String validationMessage) {
         this.valid = isValid;
         this.validationMessage = validationMessage;
     }

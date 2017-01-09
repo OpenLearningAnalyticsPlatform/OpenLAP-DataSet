@@ -1,4 +1,4 @@
-package DataSet;
+package de.rwthaachen.openlap.dataset;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,24 +10,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * component.
  * In simple terms, this class represents (outputPortColumn.ConfigData -> inputPortColumn.ConfigData)
  */
-public class OLAPPortMapping {
-    private final OLAPColumnConfigurationData outputPort;
-    private final OLAPColumnConfigurationData inputPort;
+public class OpenLAPPortMapping {
+    private final OpenLAPColumnConfigData outputPort;
+    private final OpenLAPColumnConfigData inputPort;
 
     /**
      * Constructor for serialization purposes
      */
-    public OLAPPortMapping(){
+    public OpenLAPPortMapping(){
         this.outputPort = null;
         this.inputPort = null;
     }
 
     /**
      * Standard constructor with in- and out- port.
-     * @param outputPort The OLAPColumnConfigurationData considered the output of the tuple (origin)
-     * @param inputPort The OLAPColumnConfigurationData considered the input of the tuple (destination)
+     * @param outputPort The OpenLAPColumnConfigData considered the output of the tuple (origin)
+     * @param inputPort The OpenLAPColumnConfigData considered the input of the tuple (destination)
      */
-    public OLAPPortMapping(OLAPColumnConfigurationData outputPort, OLAPColumnConfigurationData inputPort) {
+    public OpenLAPPortMapping(OpenLAPColumnConfigData outputPort, OpenLAPColumnConfigData inputPort) {
         this.outputPort = outputPort;
         this.inputPort = inputPort;
     }
@@ -35,14 +35,14 @@ public class OLAPPortMapping {
     /**
      * @return The output port of the tuple (origin)
      */
-    public OLAPColumnConfigurationData getOutputPort() {
+    public OpenLAPColumnConfigData getOutputPort() {
         return outputPort;
     }
 
     /**
      * @return The input port of the tuple (destination)
      */
-    public OLAPColumnConfigurationData getInputPort() {
+    public OpenLAPColumnConfigData getInputPort() {
         return inputPort;
     }
 
@@ -51,8 +51,8 @@ public class OLAPPortMapping {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof OLAPPortMapping)) return false;
-        OLAPPortMapping mapping = (OLAPPortMapping) o;
+        if (!(o instanceof OpenLAPPortMapping)) return false;
+        OpenLAPPortMapping mapping = (OpenLAPPortMapping) o;
         return this.outputPort.equals(mapping.getOutputPort()) &&
                 this.inputPort.equals(mapping.getInputPort());
     }
@@ -67,7 +67,7 @@ public class OLAPPortMapping {
         try {
             return mapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {
-            return "OLAPPortMapping{" +
+            return "OpenLAPPortMapping{" +
                     "outputPort=" + outputPort +
                     ", inputPort=" + inputPort +
                     '}';
