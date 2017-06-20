@@ -1,29 +1,5 @@
 # OpenLAP-DataSet
 
-## INTRODUCTION
-A modular JSON Serializable DataSet to serialize and validate data between macro components in the OpenLAP project.
-The OpenLAP-DataSet is a Java module that is to be used by the Analytics Methods, Analytics Modules, Visualizer,
-Analytics Engine and Web Client macro components of the OpenLAP.
-
-## MOTIVATION
-
-Since the macro components of the OpenLAP reside potentially in different physical hardware, and they act with relative
-independence from each other, a proper Data transfer structure needed to be developed. The structure needs to be simple
-enough to be easily serializable to and from JSON since it needs to be human-readable form but enable automatic parsing.
-This JSON approach also enables and future proofs the structure in case the Data Base system of the OpenLAP migrates
-to noSQL JSON document based Data Base systems.
-The data structure also needs to make possible to send partial structures or metadata chunks to both validate types and
-configurations during runtime before sending the data payload in order to provide a performance gain.
-
-The OpenLAP-DataSet answer the need of the OpenLAP for a mechanism that can provide the following functionalities:
-
-1. Provide Java compatible data type checking.
-2. Provide a structure that could be easily serializable to and from JSON in a way that the data and metadata can be
-  human readable and ease the usage and delivering of datha to and from the Web Client.
-3. Provide mechanisms for supporting eventual migration to noSQL standards for databases.
-4. Ease the serialization and enable partial transfer, either by chunks of data or by transmitting only header and
- validation information.
-
 
 ## FUNCTIONALITY AND INTERNALS
 
