@@ -23,24 +23,30 @@ public class OpenLAPDataColumnFactory {
             throws OpenLAPDataColumnException {
         switch (type)
         {
-            case BYTE:
-                return new OpenLAPDataColumn<Byte>(id, OpenLAPColumnDataType.BYTE, isRequired);
-            case SHORT:
-                return new OpenLAPDataColumn<Short>(id, OpenLAPColumnDataType.SHORT, isRequired);
-            case STRING:
-                return new OpenLAPDataColumn<String>(id, OpenLAPColumnDataType.STRING, isRequired);
-            case INTEGER:
-                return new OpenLAPDataColumn<Integer>(id, OpenLAPColumnDataType.INTEGER, isRequired);
-            case BOOLEAN:
-                return new OpenLAPDataColumn<Boolean>(id, OpenLAPColumnDataType.BOOLEAN, isRequired);
-            case LONG:
-                return new OpenLAPDataColumn<Long>(id, OpenLAPColumnDataType.LONG, isRequired);
-            case FLOAT:
-                return new OpenLAPDataColumn<Float>(id, OpenLAPColumnDataType.FLOAT, isRequired);
-            case LOCAL_DATE_TIME:
-                return new OpenLAPDataColumn<LocalDateTime>(id, OpenLAPColumnDataType.LOCAL_DATE_TIME, isRequired);
-            case CHAR:
-                return new OpenLAPDataColumn<Character>(id, OpenLAPColumnDataType.CHAR, isRequired);
+//            case BYTE:
+//                return new OpenLAPDataColumn<Byte>(id, OpenLAPColumnDataType.BYTE, isRequired);
+//            case SHORT:
+//                return new OpenLAPDataColumn<Short>(id, OpenLAPColumnDataType.SHORT, isRequired);
+//            case STRING:
+//                return new OpenLAPDataColumn<String>(id, OpenLAPColumnDataType.STRING, isRequired);
+//            case INTEGER:
+//                return new OpenLAPDataColumn<Integer>(id, OpenLAPColumnDataType.INTEGER, isRequired);
+//            case BOOLEAN:
+//                return new OpenLAPDataColumn<Boolean>(id, OpenLAPColumnDataType.BOOLEAN, isRequired);
+//            case LONG:
+//                return new OpenLAPDataColumn<Long>(id, OpenLAPColumnDataType.LONG, isRequired);
+//            case FLOAT:
+//                return new OpenLAPDataColumn<Float>(id, OpenLAPColumnDataType.FLOAT, isRequired);
+//            case LOCAL_DATE_TIME:
+//                return new OpenLAPDataColumn<LocalDateTime>(id, OpenLAPColumnDataType.LOCAL_DATE_TIME, isRequired);
+//            case CHAR:
+//                return new OpenLAPDataColumn<Character>(id, OpenLAPColumnDataType.CHAR, isRequired);
+            case Text:
+                return new OpenLAPDataColumn<String>(id, OpenLAPColumnDataType.Text, isRequired);
+            case Numeric:
+                return new OpenLAPDataColumn<Float>(id, OpenLAPColumnDataType.Numeric, isRequired);
+            case TrueFalse:
+                return new OpenLAPDataColumn<Boolean>(id, OpenLAPColumnDataType.TrueFalse, isRequired);
             default:
                 throw new OpenLAPDataColumnException("Data type not supported");
         }
@@ -51,24 +57,30 @@ public class OpenLAPDataColumnFactory {
             throws OpenLAPDataColumnException {
         switch (type)
         {
-            case BYTE:
-                return new OpenLAPDataColumn<Byte>(id, OpenLAPColumnDataType.BYTE, isRequired, title, description);
-            case SHORT:
-                return new OpenLAPDataColumn<Short>(id, OpenLAPColumnDataType.SHORT, isRequired, title, description);
-            case STRING:
-                return new OpenLAPDataColumn<String>(id, OpenLAPColumnDataType.STRING, isRequired, title, description);
-            case INTEGER:
-                return new OpenLAPDataColumn<Integer>(id, OpenLAPColumnDataType.INTEGER, isRequired, title, description);
-            case BOOLEAN:
-                return new OpenLAPDataColumn<Boolean>(id, OpenLAPColumnDataType.BOOLEAN, isRequired, title, description);
-            case LONG:
-                return new OpenLAPDataColumn<Long>(id, OpenLAPColumnDataType.LONG, isRequired, title, description);
-            case FLOAT:
-                return new OpenLAPDataColumn<Float>(id, OpenLAPColumnDataType.FLOAT, isRequired, title, description);
-            case LOCAL_DATE_TIME:
-                return new OpenLAPDataColumn<LocalDateTime>(id, OpenLAPColumnDataType.LOCAL_DATE_TIME, isRequired, title, description);
-            case CHAR:
-                return new OpenLAPDataColumn<Character>(id, OpenLAPColumnDataType.CHAR, isRequired, title, description);
+//            case BYTE:
+//                return new OpenLAPDataColumn<Byte>(id, OpenLAPColumnDataType.BYTE, isRequired, title, description);
+//            case SHORT:
+//                return new OpenLAPDataColumn<Short>(id, OpenLAPColumnDataType.SHORT, isRequired, title, description);
+//            case STRING:
+//                return new OpenLAPDataColumn<String>(id, OpenLAPColumnDataType.STRING, isRequired, title, description);
+//            case INTEGER:
+//                return new OpenLAPDataColumn<Integer>(id, OpenLAPColumnDataType.INTEGER, isRequired, title, description);
+//            case BOOLEAN:
+//                return new OpenLAPDataColumn<Boolean>(id, OpenLAPColumnDataType.BOOLEAN, isRequired, title, description);
+//            case LONG:
+//                return new OpenLAPDataColumn<Long>(id, OpenLAPColumnDataType.LONG, isRequired, title, description);
+//            case FLOAT:
+//                return new OpenLAPDataColumn<Float>(id, OpenLAPColumnDataType.FLOAT, isRequired, title, description);
+//            case LOCAL_DATE_TIME:
+//                return new OpenLAPDataColumn<LocalDateTime>(id, OpenLAPColumnDataType.LOCAL_DATE_TIME, isRequired, title, description);
+//            case CHAR:
+//                return new OpenLAPDataColumn<Character>(id, OpenLAPColumnDataType.CHAR, isRequired, title, description);
+            case Text:
+                return new OpenLAPDataColumn<String>(id, OpenLAPColumnDataType.Text, isRequired, title, description);
+            case Numeric:
+                return new OpenLAPDataColumn<Float>(id, OpenLAPColumnDataType.Numeric, isRequired, title, description);
+            case TrueFalse:
+                return new OpenLAPDataColumn<Boolean>(id, OpenLAPColumnDataType.TrueFalse, isRequired, title, description);
             default:
                 throw new OpenLAPDataColumnException("Data type not supported");
         }
